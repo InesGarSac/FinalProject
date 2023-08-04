@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.room.Room
 import com.keepcoding.finalproject.data.MovieRepository
 import com.keepcoding.finalproject.data.MovieRepositoryImpl
+import com.keepcoding.finalproject.data.local.LocalDataSource
+import com.keepcoding.finalproject.data.local.LocalDataSourceImpl
+import com.keepcoding.finalproject.data.local.MovieDao
 import com.keepcoding.finalproject.data.local.MovieDatabase
 import com.keepcoding.finalproject.data.remote.MovieApi
 import com.keepcoding.finalproject.data.remote.RemoteDataSource
@@ -39,9 +42,11 @@ val dataModule = module {
             .build()
     }
 
-    single<MovieRepository> { MovieRepositoryImpl(get()) }
+    single<MovieRepository> { MovieRepositoryImpl(get(), get()) }
 
     single<RemoteDataSource> { RemoteDataSourceImpl(get()) }
+
+    single<LocalDataSource> { LocalDataSourceImpl(get()) }
 
 
     single<MovieApi> {
@@ -52,7 +57,9 @@ val dataModule = module {
         getDatabase(get())
     }
 
-
+    single {
+        providesMovieDao(get())
+    }
 }
 
 private fun getMovieApi(retrofit: Retrofit) =
@@ -63,4 +70,7 @@ private fun getDatabase(context: Context) : MovieDatabase =
         context,
         MovieDatabase::class.java, "superhero-db"
     ).build()
+
+private fun providesMovieDao(db: MovieDatabase) : MovieDao =
+    db.movieDao()
 

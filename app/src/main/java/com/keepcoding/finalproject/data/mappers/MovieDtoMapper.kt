@@ -20,7 +20,9 @@ fun MovieDto.toMovieLocal() = MovieLocal(
     releaseDate = releaseDate ?: "" ,
     language= language ?: "",
     rate= rate ?: "",
+    description = description ?: "",
     photo = photo ?: ""
+
 )
 
 fun MovieLocal.toMovieModel() = MovieModel(
