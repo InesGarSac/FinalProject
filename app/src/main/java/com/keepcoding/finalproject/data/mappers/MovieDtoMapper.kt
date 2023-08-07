@@ -11,7 +11,8 @@ fun MovieDto.toMovieModel() = MovieModel(
     language= language ?: "",
     rate= rate ?: "",
     photoUrl = photo ?: "",
-    overview = description?: ""
+    overview = description?: "",
+    genres = genre
 )
 
 
@@ -23,6 +24,7 @@ fun MovieDto.toMovieLocal() = MovieLocal(
     rate= rate ?: "",
     description = description ?: "",
     photo = photo ?: "",
+    genres = genre
 
 )
 
@@ -33,6 +35,6 @@ fun MovieLocal.toMovieModel() = MovieModel(
     rate = rate,
     language = language,
     overview = description ?: "",
-    photoUrl = photo,
-
+    photoUrl = photo?: "",
+    genres = genres
     )

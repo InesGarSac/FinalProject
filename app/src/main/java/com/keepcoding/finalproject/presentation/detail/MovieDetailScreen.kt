@@ -1,5 +1,7 @@
 package com.keepcoding.finalproject.presentation.detail
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

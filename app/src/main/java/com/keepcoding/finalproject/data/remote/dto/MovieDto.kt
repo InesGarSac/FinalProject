@@ -9,5 +9,6 @@ data class MovieDto(
     @Json(name = "release_date") val releaseDate: String?,
     @Json(name = "original_language") val language: String?,
     @Json(name = "overview") val description: String?,
-    @Json(name = "poster_path") val photo: String?
+    @Json(name = "poster_path") val photo: String?,
+    @Json(name = "genre") val genre: List<String>?
 )

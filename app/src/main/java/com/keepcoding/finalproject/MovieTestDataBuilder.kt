@@ -12,6 +12,7 @@ class MovieTestDataBuilder {
     var releaseDate = ""
     var photoUrl = ""
     var description = ""
+    var genres = listOf<String>()
     var numElements: Int = 1
 
     fun withId(id: String): MovieTestDataBuilder {
@@ -51,7 +52,8 @@ class MovieTestDataBuilder {
                     language = language,
                     releaseDate = releaseDate,
                     photoUrl = photoUrl,
-                    overview = description
+                    overview = description,
+                    genres = listOf()
                 )
             )
         }
@@ -65,7 +67,8 @@ class MovieTestDataBuilder {
         language = language,
         releaseDate = releaseDate,
         photoUrl = photoUrl,
-        overview = description
+        overview = description,
+        genres = listOf()
     )
 }
 
