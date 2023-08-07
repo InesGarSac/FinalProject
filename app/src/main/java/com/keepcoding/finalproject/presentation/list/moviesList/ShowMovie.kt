@@ -54,6 +54,9 @@ fun ShowMovieItem(
                 .padding(8.dp)
                 .fillMaxWidth()
                 .background(Color.White)
+                .clickable {
+                    onClick?.invoke()
+                }
         ) {
             AsyncImage(
                 modifier = Modifier

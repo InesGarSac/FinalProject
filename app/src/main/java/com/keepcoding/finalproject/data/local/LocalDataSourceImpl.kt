@@ -9,4 +9,5 @@ class LocalDataSourceImpl(
     override suspend fun insertMovieList(movieList: List<MovieLocal>) = movieDao.insertAll(movieList)
 
     override suspend fun getMovieLocalList(): List<MovieLocal> = movieDao.getAllMovies()
+    override suspend fun getMovieById(id: String): MovieLocal = movieDao.getMovieById(id)
 }

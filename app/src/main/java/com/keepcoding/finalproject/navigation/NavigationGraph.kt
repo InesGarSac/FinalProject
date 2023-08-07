@@ -12,6 +12,7 @@ fun NavigationGraph() {
         navController = navController,
         startDestination = Screen.MovieListScreen.route, // Igual que el startDestination
     ) {
-        addHeroListScreen(navController)
+        addMovieListScreen(navController)
+        addMovieDetailScreen()
     }
 }

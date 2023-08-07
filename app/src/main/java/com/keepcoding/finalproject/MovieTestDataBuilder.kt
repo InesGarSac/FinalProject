@@ -4,7 +4,7 @@ import com.keepcoding.finalproject.domain.model.MovieModel
 
 
 class MovieTestDataBuilder {
-    val id = "test-id"
+    var id = "movie-id"
     var name = ""
     var title = ""
     var rate = ""
@@ -14,6 +14,10 @@ class MovieTestDataBuilder {
     var description = ""
     var numElements: Int = 1
 
+    fun withId(id: String): MovieTestDataBuilder {
+        this.id = id
+        return this
+    }
     fun withName(name: String): MovieTestDataBuilder {
         this.name = name
         return this
@@ -46,7 +50,8 @@ class MovieTestDataBuilder {
                     rate = rate,
                     language = language,
                     releaseDate = releaseDate,
-                    photoUrl = photoUrl
+                    photoUrl = photoUrl,
+                    overview = description
                 )
             )
         }
@@ -59,7 +64,8 @@ class MovieTestDataBuilder {
         title = title, rate = rate,
         language = language,
         releaseDate = releaseDate,
-        photoUrl = photoUrl
+        photoUrl = photoUrl,
+        overview = description
     )
 }
 

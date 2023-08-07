@@ -8,5 +8,6 @@ data class MovieModel(
     val rate: String,
     val language: String,
     val releaseDate: String,
-    val photoUrl: String
+    val photoUrl: String,
+    val overview: String
 )

@@ -11,4 +11,8 @@ sealed class Screen(
         route = "movieList",
         arguments = emptyList()
     )
+    object MovieDetailScreen : Screen(
+        route = "movieDetail",
+        arguments = emptyList()
+    )
 }

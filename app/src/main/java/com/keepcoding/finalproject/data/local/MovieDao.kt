@@ -18,8 +18,10 @@ interface MovieDao {
     @Query("SELECT * FROM MovieTable")
     suspend fun getAllMovies(): List<MovieLocal>
 
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAll(list: List<MovieLocal>)
+
+    @Query("SELECT * FROM MovieTable WHERE id=:id")
+    suspend fun getMovieById(id: String) : MovieLocal
 
 }

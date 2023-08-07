@@ -27,4 +27,6 @@ class MovieRepositoryImpl(
         }
 
     }
+
+    override suspend fun getMovieById(id: String): MovieModel = localDataSource.getMovieById(id).toMovieModel()
 }
