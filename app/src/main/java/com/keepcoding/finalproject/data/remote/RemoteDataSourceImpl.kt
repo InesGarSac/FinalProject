@@ -7,8 +7,8 @@ class RemoteDataSourceImpl(
     private val movieApi: MovieApi
 ) : RemoteDataSource {
     override suspend fun getMovieList(): List<MovieDto> {
-        Log.d("Remote", "${movieApi.getMoviesList().results}")
-       return movieApi.getMoviesList().results
+        Log.d("Remote", "${movieApi.getMoviesList()}")
+       return movieApi.getMoviesList()
     }
 
 

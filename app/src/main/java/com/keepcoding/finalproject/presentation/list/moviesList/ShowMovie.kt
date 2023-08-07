@@ -26,13 +26,15 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keepcoding.finalproject.MovieTestDataBuilder
 import com.keepcoding.finalproject.R
 import com.keepcoding.finalproject.domain.model.MovieModel
+import com.keepcoding.finalproject.presentation.detail.extractYearFromDate
 
-const val POSTER_BASE_URL = "https://image.tmdb.org/t/p/w342"
+const val POSTER_BASE_URL = "https://wsrv.nl/?url=https://simkl.in"
 
 @Composable
 fun ShowMovieItem(
@@ -66,7 +68,7 @@ fun ShowMovieItem(
                 placeholder = painterResource(id = R.drawable.movie_image),
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(POSTER_BASE_URL + movie.photoUrl)
+                    .data(POSTER_BASE_URL +"/posters/" + movie.photoUrl+ "_m.jpg")
                     .build(), contentDescription = ""
             )
             Column(
@@ -98,11 +100,14 @@ fun ShowMovieItem(
                         painter = painterResource(id = R.drawable.release_date_image),
                         contentDescription = stringResource(R.string.release_date_description)
                     )
-                    Text(
-                        text = movie.releaseDate,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                    extractYearFromDate(movie.releaseDate)?.let {
+                        androidx.compose.material3.Text(
+                            text = it,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
+
                 }
 
                 Row (
@@ -119,7 +124,7 @@ fun ShowMovieItem(
                     )
 
                     Text(
-                        text = movie.rate,
+                        text = "4,7",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -140,7 +145,7 @@ fun ShowMovieItem(
                     )
                     //Movie language
                     Text(
-                        text = movie.language,
+                        text = "spanish",
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )

@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.data.remote
 
+import com.keepcoding.finalproject.data.remote.dto.MovieDto
 import com.keepcoding.finalproject.data.remote.dto.ResultDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -15,9 +16,9 @@ const val TOKEN = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMGQ5MjZmOGMyZTViNjY1NzVkNzcw
 interface MovieApi {
 
 
-    @GET("discover/movie/?api_key=368e649b5c6aa9a36f366c915a7d3cfa")
+    @GET("trending/?extended=overview,genres&client_id=c45812461936d60195257754b6389e7e95513cd708fbd7bc180530b66a81db41")
     @Headers("Authorization: Bearer $TOKEN")
-    suspend fun getMoviesList(): ResultDto
+    suspend fun getMoviesList(): List<MovieDto>
     // @PUT
     // @DELETE
 }

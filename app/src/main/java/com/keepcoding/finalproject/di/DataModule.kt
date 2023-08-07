@@ -30,7 +30,7 @@ val dataModule = module {
 
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("https://api.themoviedb.org/3/")
+            .baseUrl("https://api.simkl.com/movies/")
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()

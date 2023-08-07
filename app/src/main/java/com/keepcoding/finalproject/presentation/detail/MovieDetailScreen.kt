@@ -36,7 +36,7 @@ fun MovieDetailScreen(
 ) {
 
     val movieState = movieDetailViewModel.movie.observeAsState()
-    movieDetailViewModel.getMovie(id)
+//    movieDetailViewModel.getMovie(id)
 
     val resultMovieValue = movieState.value
 

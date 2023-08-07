@@ -63,7 +63,7 @@ fun ShowDetail(
             horizontalArrangement = Arrangement.Center) {
             Text(
                 modifier = Modifier.padding(10.dp),
-                text = movie.language,
+                text = "Lenguaje",
                 fontSize = 14.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis)
@@ -87,7 +87,7 @@ fun ShowDetail(
                 overflow = TextOverflow.Ellipsis)
             Text(
                 modifier = Modifier.padding(10.dp),
-                text = movie.rate,
+                text = "Estrellas",
                 fontSize = 14.sp,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis)
@@ -126,7 +126,7 @@ fun ShowDetail(
 }
 
 fun extractYearFromDate(dateAsString: String): String? {
-    val formatFromApi = SimpleDateFormat("yyyy-MM-dd")
+    val formatFromApi = SimpleDateFormat("dd/MM/yyyy")
     val myFormat = SimpleDateFormat("yyyy")
     return formatFromApi.parse(dateAsString)?.let { date ->
         myFormat.format(date)

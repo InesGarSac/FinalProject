@@ -12,7 +12,7 @@ import org.koin.androidx.compose.koinViewModel
 @Composable
 fun MovieListScreen(
     movieListViewModel: MovieListViewModel = koinViewModel(),
-    onItemClick: (String) -> Unit
+//    onItemClick: (String) -> Unit
 ) {
 
     val state = movieListViewModel.movieList.observeAsState()
@@ -27,7 +27,7 @@ fun MovieListScreen(
             val item = movieList?.get(i)
             item?.let { movie ->
                 ShowMovieItem(movie) {
-                    onItemClick.invoke(movie.id)
+//                    onItemClick.invoke(movie.id)
                 }
             }
 
@@ -38,7 +38,7 @@ fun MovieListScreen(
 @Preview
 @Composable
 fun MovieListScreenPreview() {
-    MovieListScreen{
+    MovieListScreen()
 
-    }
+
 }
