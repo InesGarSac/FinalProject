@@ -17,10 +17,10 @@ class MovieDetailViewModel(
     private val _movie = MutableLiveData<MovieModel>()
     val movie: LiveData<MovieModel> get() = _movie
 
-//    fun getMovie(id: String) = viewModelScope.launch {
-//        val resultMovie = withContext(Dispatchers.IO){
-//            getDetailUseCase.invoke(id)
-//        }
-//        _movie.value = resultMovie
-//    }
+    fun getMovie(id: String) = viewModelScope.launch {
+        val resultMovie = withContext(Dispatchers.IO){
+            getDetailUseCase.invoke(id)
+        }
+        _movie.value = resultMovie
+    }
 }

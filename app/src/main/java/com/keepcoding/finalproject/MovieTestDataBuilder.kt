@@ -1,6 +1,7 @@
 package com.keepcoding.finalproject
 
 import com.keepcoding.finalproject.data.remote.dto.IdDto
+import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
 
 
@@ -47,7 +48,7 @@ class MovieTestDataBuilder {
         for (i in 0..numElements) {
             list.add(
                 MovieModel(
-                    id = IdDto(567),
+                    id = IdModel(23),
                     title = title,
 //                    rate = rate,
 //                    language = language,
@@ -63,7 +64,7 @@ class MovieTestDataBuilder {
     }
 
     fun buildSingle() = MovieModel(
-        id = IdDto(547),
+        id = IdModel(35),
         title = title,
 //        rate = rate,
 //        language = language,
