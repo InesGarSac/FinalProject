@@ -45,7 +45,7 @@ fun ShowDetail(
                 placeholder = painterResource(id = R.drawable.movie_image),
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
-                    .data(POSTER_BASE_URL + movie.photoUrl)
+                    .data(POSTER_BASE_URL +"/posters/" + movie.photoUrl+ "_m.jpg")
                     .build(), contentDescription = ""
             )
         }
@@ -59,32 +59,31 @@ fun ShowDetail(
             overflow = TextOverflow.Ellipsis)
 
         Row(modifier = Modifier
-            .fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center) {
+            .fillMaxWidth()) {
             Text(
                 modifier = Modifier.padding(10.dp),
-                text = "Lenguaje",
+                text = "español",
                 fontSize = 14.sp,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis)
+                overflow = TextOverflow.Ellipsis
+            )
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = "|",
                 fontSize = 14.sp,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis)
+                overflow = TextOverflow.Ellipsis
+            )
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = movie.genres.toString(),
                 fontSize = 14.sp,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis)
-            Text(
-                modifier = Modifier.padding(10.dp),
-                text = "|",
-                fontSize = 14.sp,
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis)
+                maxLines = 2,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+        Row(modifier = Modifier
+            .fillMaxWidth()) {
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = "Estrellas",

@@ -23,6 +23,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -48,14 +49,13 @@ fun ShowMovieItem(
 
     Card(
         modifier = Modifier.padding(2.dp),
-        elevation = 2.dp,
+        elevation = 10.dp,
         shape = RoundedCornerShape(20.dp)
     ) {
         Row(
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
-                .background(Color.White)
                 .clickable {
                     onClick?.invoke()
                 }
@@ -82,7 +82,9 @@ fun ShowMovieItem(
                 ) {
                     Text(
                         text = movie.title,
-                        maxLines = 1,
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 2,
                         overflow = TextOverflow.Ellipsis
                     )
                 }
@@ -91,18 +93,18 @@ fun ShowMovieItem(
                 //Release date
                 Row (
                     modifier = Modifier
-                        .background(Color.Gray)
                         .padding(2.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     Image(
-                        modifier = Modifier.size(15.dp, 15.dp),
+                        modifier = Modifier.size(16.dp, 16.dp),
                         painter = painterResource(id = R.drawable.release_date_image),
                         contentDescription = stringResource(R.string.release_date_description)
                     )
                     extractYearFromDate(movie.releaseDate)?.let {
-                        androidx.compose.material3.Text(
+                        androidx.compose.material.Text(
                             text = it,
+                            fontSize = 12.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
@@ -112,19 +114,19 @@ fun ShowMovieItem(
 
                 Row (
                     modifier = Modifier
-                        .background(Color.Cyan)
                         .padding(2.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     //Movie rate
                     Image(
-                        modifier = Modifier.size(15.dp, 15.dp),
+                        modifier = Modifier.size(16.dp, 16.dp),
                         painter = painterResource(id = R.drawable.rate_movie_image),
                         contentDescription = stringResource(R.string.release_date_description)
                     )
 
                     Text(
                         text = "4,7",
+                        fontSize = 12.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )
@@ -133,19 +135,19 @@ fun ShowMovieItem(
 
                 Row (
                     modifier = Modifier
-                        .background(Color.Magenta)
                         .padding(2.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ){
                     //Movie rate
                     Image(
-                        modifier = Modifier.size(15.dp, 15.dp),
+                        modifier = Modifier.size(16.dp, 16.dp),
                         painter = painterResource(id = R.drawable.language_image),
                         contentDescription = stringResource(R.string.release_date_description)
                     )
                     //Movie language
                     Text(
                         text = "spanish",
+                        fontSize = 12.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
                     )

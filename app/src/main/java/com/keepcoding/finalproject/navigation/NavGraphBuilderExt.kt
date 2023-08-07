@@ -5,11 +5,11 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.keepcoding.finalproject.presentation.detail.MovieDetailScreen
 import com.keepcoding.finalproject.presentation.list.moviesList.MovieListScreen
+import com.keepcoding.finalproject.presentation.list.tvList.TvListScreen
 
 
 fun NavGraphBuilder.addMovieListScreen(navController: NavHostController) {
     composable(Screen.MovieListScreen.route) {
-//        MovieListScreen()
       MovieListScreen{
             movieId ->
             navController.navigate("${Screen.MovieDetailScreen.route}/$movieId")
@@ -24,5 +24,13 @@ fun NavGraphBuilder.addMovieDetailScreen() {
         navBackStackEntry ->
         val id = navBackStackEntry.arguments?.getString("movieId") ?: ""
         MovieDetailScreen(id = id)
+    }
+}
+
+fun NavGraphBuilder.addTVScreen(){
+    composable(
+        Screen.TvListScreen.route
+    ){
+        TvListScreen()
     }
 }
