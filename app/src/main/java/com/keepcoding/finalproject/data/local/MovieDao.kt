@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.keepcoding.finalproject.data.local.model.MovieLocal
 
 // Create
@@ -23,5 +24,8 @@ interface MovieDao {
 
     @Query("SELECT * FROM MovieTable WHERE id=:id")
     suspend fun getMovieById(id: String) : MovieLocal
+
+    @Update
+    suspend fun updateFavorite(movie: MovieLocal)
 
 }

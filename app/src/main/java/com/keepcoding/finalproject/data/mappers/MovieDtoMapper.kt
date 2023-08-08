@@ -8,26 +8,28 @@ import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
 
 fun MovieDto.toMovieModel() = MovieModel(
-    id = IdModel(id.id),
+    id = IdModel(id?.id!!),
     title = title ?: "",
     releaseDate = releaseDate ?: "" ,
 //    language= language ?: "",
 //    rate= rate ?: "",
     photoUrl = photo ?: "",
     overview = description?: "",
-    genres = genres
+    genres = genres,
+    favorite = 0
 )
 
 
 fun MovieDto.toMovieLocal() = MovieLocal(
-    ids = IdLocal(id.id),
+    ids = IdLocal(id?.id!!),
     title= title ?: "",
     releaseDate = releaseDate ?: "" ,
 //    language= language ?: "",
 //    rate= rate ?: "",
     description = description ?: "",
     photo = photo ?: "",
-    genres = genres
+    genres = genres,
+    favorite = 0
 
 )
 
@@ -39,5 +41,16 @@ fun MovieLocal.toMovieModel() = MovieModel(
 //    language = language,
     overview = description ?: "",
     photoUrl = photo?: "",
-    genres = genres
-    )
+    genres = genres,
+    favorite = favorite!!
+)
+
+fun MovieModel.toMovieLocal() = MovieLocal(
+    ids = IdLocal(id.id),
+    title= title,
+    releaseDate = releaseDate,
+    description = overview,
+    photo = photoUrl,
+    genres = genres,
+    favorite = favorite
+)

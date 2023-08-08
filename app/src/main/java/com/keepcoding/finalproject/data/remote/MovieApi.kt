@@ -1,7 +1,6 @@
 package com.keepcoding.finalproject.data.remote
 
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
-import com.keepcoding.finalproject.data.remote.dto.ResultDto
 import retrofit2.http.GET
 import retrofit2.http.Headers
 

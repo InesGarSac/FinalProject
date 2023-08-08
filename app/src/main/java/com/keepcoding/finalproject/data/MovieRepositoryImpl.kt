@@ -28,13 +28,17 @@ class MovieRepositoryImpl(
             Log.d("FOTOOO", POSTER_BASE_URL +"/posters/" + it.photo.toString()+ "_w.jpg")
         }
 
-
         return remoteData.map {
             it.toMovieModel()
-
         }
 
     }
 
     override suspend fun getMovieById(id: String): MovieModel = localDataSource.getMovieById(id).toMovieModel()
+    override suspend fun updateFavorite(movie: MovieModel) = localDataSource.updateFavorite(movie.toMovieLocal())
+    override suspend fun getFavoriteMovieList(id: String): MovieModel {
+        TODO("Not yet implemented")
+    }
+
+
 }

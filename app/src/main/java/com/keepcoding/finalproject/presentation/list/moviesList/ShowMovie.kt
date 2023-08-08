@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -28,24 +29,34 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keepcoding.finalproject.MovieTestDataBuilder
 import com.keepcoding.finalproject.R
+import com.keepcoding.finalproject.components.StarComponent
 import com.keepcoding.finalproject.domain.model.MovieModel
+import com.keepcoding.finalproject.domain.usecase.MakeFavoriteUseCase
 import com.keepcoding.finalproject.presentation.detail.extractYearFromDate
+import com.keepcoding.finalproject.presentation.list.favoriteList.FavoriteListViewModel
+import org.koin.androidx.compose.koinViewModel
 
 const val POSTER_BASE_URL = "https://wsrv.nl/?url=https://simkl.in"
 
 @Composable
 fun ShowMovieItem(
     movie: MovieModel,
+    favoriteListViewModel: FavoriteListViewModel = koinViewModel(),
     onClick: (() -> Unit)? = null
 
 ) {
     var state by remember {
         mutableStateOf(false)
     }
+    var starred by rememberSaveable() {
+        mutableStateOf(false)
+    }
+
 
     Card(
         modifier = Modifier.padding(2.dp),
@@ -62,9 +73,10 @@ fun ShowMovieItem(
         ) {
             AsyncImage(
                 modifier = Modifier
-                    .size(100.dp).clickable {
-                state = !state
-            },
+                    .size(100.dp)
+                    .clickable {
+                        state = !state
+                    },
                 placeholder = painterResource(id = R.drawable.movie_image),
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
@@ -153,6 +165,29 @@ fun ShowMovieItem(
                     )
                 }
 
+                // Star
+                AndroidView(
+                    modifier = Modifier.clickable {
+                        val newState = !starred
+                        starred = newState
+                        if(starred){
+                            movie.favorite= 1
+                            favoriteListViewModel.updateFavorite(movie)
+                        }else{
+                            movie.favorite = 0
+                            favoriteListViewModel.updateFavorite(movie)
+                        }
+                    },
+                    factory = { context ->
+                        StarComponent(context).apply {
+                            checked = starred
+                        }
+                    },
+                    update = {
+                        it.checked = starred
+                    }
+                )
+
             }
         }
     }
@@ -163,19 +198,19 @@ fun ShowMovieItem(
 @Composable
 @Preview
 fun ShowHeroPreview() {
-    ShowMovieItem(
-        MovieTestDataBuilder()
-            .withName("Sample name long text long text long text long textlong text long text long text")
-            .withDescription(
-                "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text" +
-                        "Sample name long text long text long text long textlong text long text long text"
-            )
-
-            .buildSingle()
-    )
+//    ShowMovieItem(
+//        MovieTestDataBuilder()
+//            .withName("Sample name long text long text long text long textlong text long text long text")
+//            .withDescription(
+//                "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text" +
+//                        "Sample name long text long text long text long textlong text long text long text"
+//            )
+//
+//            .buildSingle()
+//    )
 }

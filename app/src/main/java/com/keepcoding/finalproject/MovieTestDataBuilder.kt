@@ -42,36 +42,36 @@ class MovieTestDataBuilder {
         return this
     }
 
-    fun buildList(): List<MovieModel> {
-        val list = mutableListOf<MovieModel>()
+//    fun buildList(): List<MovieModel> {
+//        val list = mutableListOf<MovieModel>()
+//
+//        for (i in 0..numElements) {
+//            list.add(
+//                MovieModel(
+//                    id = IdModel(23),
+//                    title = title,
+////                    rate = rate,
+////                    language = language,
+//                    releaseDate = releaseDate,
+//                    photoUrl = photoUrl,
+//                    overview = description,
+//                    genres = listOf()
+//                )
+//            )
+//        }
+//
+//        return list.toList()
+//    }
 
-        for (i in 0..numElements) {
-            list.add(
-                MovieModel(
-                    id = IdModel(23),
-                    title = title,
-//                    rate = rate,
-//                    language = language,
-                    releaseDate = releaseDate,
-                    photoUrl = photoUrl,
-                    overview = description,
-                    genres = listOf()
-                )
-            )
-        }
-
-        return list.toList()
-    }
-
-    fun buildSingle() = MovieModel(
-        id = IdModel(35),
-        title = title,
-//        rate = rate,
-//        language = language,
-        releaseDate = releaseDate,
-        photoUrl = photoUrl,
-        overview = description,
-        genres = listOf()
-    )
+//    fun buildSingle() = MovieModel(
+//        id = IdModel(35),
+//        title = title,
+////        rate = rate,
+////        language = language,
+//        releaseDate = releaseDate,
+//        photoUrl = photoUrl,
+//        overview = description,
+//        genres = listOf()
+//    )
 }
 

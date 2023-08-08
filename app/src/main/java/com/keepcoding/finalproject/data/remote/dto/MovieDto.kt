@@ -4,7 +4,7 @@ import com.keepcoding.finalproject.domain.model.IdModel
 import com.squareup.moshi.Json
 
 data class MovieDto(
-    @Json(name = "ids") val id: IdDto,
+    @Json(name = "ids") val id: IdDto?,
     @Json(name = "title") val title: String?,
     @Json(name = "release_date") val releaseDate: String?,
 //    @Json(name = "original_language") val language: String?,

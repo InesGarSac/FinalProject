@@ -10,5 +10,6 @@ data class MovieModel(
     val releaseDate: String,
     val photoUrl: String,
     val overview: String,
-    val genres: List<String>?
+    val genres: List<String>?,
+    var favorite: Int
 )

@@ -10,4 +10,9 @@ class LocalDataSourceImpl(
 
     override suspend fun getMovieLocalList(): List<MovieLocal> = movieDao.getAllMovies()
     override suspend fun getMovieById(id: String): MovieLocal = movieDao.getMovieById(id)
+    override suspend fun updateFavorite(movie: MovieLocal) = movieDao.updateFavorite(movie)
+    override suspend fun getFavoriteMovieList(): List<MovieLocal> {
+        TODO("Not yet implemented")
+    }
+
 }

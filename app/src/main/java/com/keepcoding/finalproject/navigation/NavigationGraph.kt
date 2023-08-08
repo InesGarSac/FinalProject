@@ -22,7 +22,7 @@ import com.keepcoding.finalproject.R
 
 sealed class BottomNavigationScreens(val route: String, val title: String, val icon: ImageVector) {
     object Home : BottomNavigationScreens("movieList", "Home", Icons.Filled.Home)
-    object TV : BottomNavigationScreens("TVList", "TV", Icons.Filled.Favorite)
+    object TV : BottomNavigationScreens("FavoriteList", "Favorite", Icons.Filled.Favorite)
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
@@ -41,7 +41,7 @@ fun NavigationGraph() {
         ) {
             addMovieListScreen(navController)
             addMovieDetailScreen()
-            addTVScreen()
+            addFavoriteListScreen()
         }
     }
 }

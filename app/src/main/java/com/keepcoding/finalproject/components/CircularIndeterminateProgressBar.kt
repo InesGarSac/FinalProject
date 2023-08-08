@@ -1,5 +1,4 @@
 package com.keepcoding.finalproject.components
-import android.graphics.Paint.Align
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row

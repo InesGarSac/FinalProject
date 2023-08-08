@@ -16,8 +16,8 @@ sealed class Screen(
         arguments = emptyList()
     )
 
-    object TvListScreen : Screen(
-        route = "TVList",
+    object FavoriteListScreen : Screen(
+        route = "FavoriteList",
         arguments = emptyList()
     )
 }
