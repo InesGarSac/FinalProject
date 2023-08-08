@@ -18,6 +18,7 @@ data class MovieLocal(
 //    @ColumnInfo(name = "rate") val rate: String,
     @ColumnInfo(name = "country") val language: String,
     @ColumnInfo(name = "releasedate") val releaseDate: String,
+//    @ColumnInfo(name = "rank") val rank: Int,
     @ColumnInfo(name = "overview") val description: String?,
     @ColumnInfo(name = "poster") val photo: String?,
     @ColumnInfo(name = "genre_ids") val genres: List<String>?,

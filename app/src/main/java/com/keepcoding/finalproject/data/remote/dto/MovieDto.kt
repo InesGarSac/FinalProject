@@ -7,6 +7,7 @@ data class MovieDto(
     @Json(name = "ids") val id: IdDto?,
     @Json(name = "title") val title: String?,
     @Json(name = "release_date") val releaseDate: String?,
+    @Json(name = "rank") val rank: Int?,
     @Json(name = "country") val language: String?,
     @Json(name = "overview") val description: String?,
     @Json(name = "poster") val photo: String?,

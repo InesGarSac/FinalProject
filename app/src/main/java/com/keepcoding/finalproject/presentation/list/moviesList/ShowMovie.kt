@@ -1,7 +1,6 @@
 package com.keepcoding.finalproject.presentation.list.moviesList
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,8 +19,6 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -33,11 +30,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.keepcoding.finalproject.MovieTestDataBuilder
 import com.keepcoding.finalproject.R
 import com.keepcoding.finalproject.components.StarComponent
 import com.keepcoding.finalproject.domain.model.MovieModel
-import com.keepcoding.finalproject.domain.usecase.MakeFavoriteUseCase
+import com.keepcoding.finalproject.presentation.detail.convertACROtoString
 import com.keepcoding.finalproject.presentation.detail.extractYearFromDate
 import com.keepcoding.finalproject.presentation.list.favoriteList.FavoriteListViewModel
 import org.koin.androidx.compose.koinViewModel
@@ -134,33 +130,12 @@ fun ShowMovieItem(
                     //Movie rate
                     Image(
                         modifier = Modifier.size(16.dp, 16.dp),
-                        painter = painterResource(id = R.drawable.rate_movie_image),
-                        contentDescription = stringResource(R.string.release_date_description)
-                    )
-
-                    Text(
-                        text = "4,7",
-                        fontSize = 12.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-
-
-                Row (
-                    modifier = Modifier
-                        .padding(2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    //Movie rate
-                    Image(
-                        modifier = Modifier.size(16.dp, 16.dp),
                         painter = painterResource(id = R.drawable.language_image),
                         contentDescription = stringResource(R.string.release_date_description)
                     )
                     //Movie language
                     Text(
-                        text = "spanish",
+                        text = convertACROtoString(movie.country),
                         fontSize = 12.sp,
                         maxLines = 1,
                         overflow = TextOverflow.Ellipsis
@@ -195,8 +170,10 @@ fun ShowMovieItem(
             }
         }
     }
-
 }
+
+
+
 
 
 @Composable
