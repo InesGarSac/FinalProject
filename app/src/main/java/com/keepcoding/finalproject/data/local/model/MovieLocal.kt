@@ -16,7 +16,7 @@ data class MovieLocal(
     @Embedded val ids: IdLocal,
     @PrimaryKey @ColumnInfo(name = "title") val title: String,
 //    @ColumnInfo(name = "rate") val rate: String,
-//    @ColumnInfo(name = "language") val language: String,
+    @ColumnInfo(name = "country") val language: String,
     @ColumnInfo(name = "releasedate") val releaseDate: String,
     @ColumnInfo(name = "overview") val description: String?,
     @ColumnInfo(name = "poster") val photo: String?,

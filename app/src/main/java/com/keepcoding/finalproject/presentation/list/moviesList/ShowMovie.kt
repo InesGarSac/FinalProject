@@ -21,6 +21,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -47,6 +48,7 @@ const val POSTER_BASE_URL = "https://wsrv.nl/?url=https://simkl.in"
 fun ShowMovieItem(
     movie: MovieModel,
     favoriteListViewModel: FavoriteListViewModel = koinViewModel(),
+    starVisibility: Boolean = false,
     onClick: (() -> Unit)? = null
 
 ) {
@@ -165,29 +167,31 @@ fun ShowMovieItem(
                     )
                 }
 
-                // Star
-                AndroidView(
-                    modifier = Modifier.clickable {
-                        val newState = !starred
-                        starred = newState
-                        if(starred){
-                            movie.favorite= 1
-                            favoriteListViewModel.updateFavorite(movie)
-                        }else{
-                            movie.favorite = 0
-                            favoriteListViewModel.updateFavorite(movie)
-                        }
-                    },
-                    factory = { context ->
-                        StarComponent(context).apply {
-                            checked = starred
-                        }
-                    },
-                    update = {
-                        it.checked = starred
-                    }
-                )
+                if(starVisibility) {
+                    // Star
+                    AndroidView(
+                        modifier = Modifier.clickable {
+                            val newState = !starred
+                            starred = newState
+                            if (starred) {
+                                movie.favorite = 1
+                                favoriteListViewModel.updateFavorite(movie)
+                            } else {
+                                movie.favorite = 0
+                                favoriteListViewModel.updateFavorite(movie)
+                            }
+                        },
+                        factory = { context ->
+                            StarComponent(context).apply {
+                                checked = starred
+                            }
+                        },
+                        update = {
+                            it.checked = starred
+                        },
 
+                        )
+                }
             }
         }
     }

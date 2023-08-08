@@ -29,7 +29,7 @@ fun MovieListScreen(
         items(movieList?.size ?: 0) { i ->
             val item = movieList?.get(i)
             item?.let { movie ->
-                ShowMovieItem(movie) {
+                ShowMovieItem(movie, starVisibility = true) {
                     onItemClick.invoke(movie.id.id)
                 }
             }
