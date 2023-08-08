@@ -2,6 +2,7 @@ package com.keepcoding.finalproject.presentation.list.moviesList
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -46,7 +47,6 @@ fun ShowMovieItem(
     favoriteListViewModel: FavoriteListViewModel = koinViewModel(),
     starVisibility: Boolean = false,
     onClick: (() -> Unit)? = null
-
 ) {
     var state by remember {
         mutableStateOf(false)
@@ -67,7 +67,8 @@ fun ShowMovieItem(
                 .fillMaxWidth()
                 .clickable {
                     onClick?.invoke()
-                }
+                },
+            verticalAlignment = Alignment.CenterVertically
         ) {
             AsyncImage(
                 modifier = Modifier
@@ -81,39 +82,65 @@ fun ShowMovieItem(
                     .data(POSTER_BASE_URL +"/posters/" + movie.photoUrl+ "_m.jpg")
                     .build(), contentDescription = ""
             )
-            Column(
-                modifier = Modifier.fillMaxWidth()
-            ) {
-                //Movie title
-                Box(modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(4.dp),
-                    contentAlignment = Alignment.Center
+            Row(modifier = Modifier.weight(8f)) {
+
+                Column(
+
                 ) {
-                    Text(
-                        text = movie.title,
-                        fontSize = 16.sp,
-                        fontWeight = FontWeight.Bold,
-                        maxLines = 2,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
+                    //Movie title
+                    Box(
+                        modifier = Modifier
+                            .padding(4.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = movie.title,
+                            fontSize = 16.sp,
+                            fontWeight = FontWeight.Bold,
+                            maxLines = 2,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                    }
 
 
-                //Release date
-                Row (
-                    modifier = Modifier
-                        .padding(2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    Image(
-                        modifier = Modifier.size(16.dp, 16.dp),
-                        painter = painterResource(id = R.drawable.release_date_image),
-                        contentDescription = stringResource(R.string.release_date_description)
-                    )
-                    extractYearFromDate(movie.releaseDate)?.let {
-                        androidx.compose.material.Text(
-                            text = it,
+                    //Release date
+                    Row(
+                        modifier = Modifier
+                            .padding(2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Image(
+                            modifier = Modifier.size(16.dp, 16.dp),
+                            painter = painterResource(id = R.drawable.release_date_image),
+                            contentDescription = stringResource(R.string.release_date_description)
+                        )
+
+                        extractYearFromDate(movie.releaseDate)?.let {
+                            androidx.compose.material.Text(
+                                text = it,
+                                fontSize = 12.sp,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                        }
+
+
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        //Movie rate
+                        Image(
+                            modifier = Modifier.size(16.dp, 16.dp),
+                            painter = painterResource(id = R.drawable.language_image),
+                            contentDescription = stringResource(R.string.release_date_description)
+                        )
+                        //Movie language
+                        Text(
+                            text = convertACROtoString(movie.country),
                             fontSize = 12.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -121,28 +148,13 @@ fun ShowMovieItem(
                     }
 
                 }
-
-                Row (
-                    modifier = Modifier
-                        .padding(2.dp),
-                    verticalAlignment = Alignment.CenterVertically
-                ){
-                    //Movie rate
-                    Image(
-                        modifier = Modifier.size(16.dp, 16.dp),
-                        painter = painterResource(id = R.drawable.language_image),
-                        contentDescription = stringResource(R.string.release_date_description)
-                    )
-                    //Movie language
-                    Text(
-                        text = convertACROtoString(movie.country),
-                        fontSize = 12.sp,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
-                }
-
-                if(starVisibility) {
+            }
+            if(starVisibility) {
+                Column(
+                    modifier = Modifier.weight(1f),
+                    horizontalAlignment = Alignment.End,
+                    verticalArrangement = Arrangement.Center
+                ) {
                     // Star
                     AndroidView(
                         modifier = Modifier.clickable {
@@ -166,32 +178,15 @@ fun ShowMovieItem(
                         },
 
                         )
+
                 }
             }
         }
     }
 }
 
-
-
-
-
-@Composable
 @Preview
-fun ShowHeroPreview() {
-//    ShowMovieItem(
-//        MovieTestDataBuilder()
-//            .withName("Sample name long text long text long text long textlong text long text long text")
-//            .withDescription(
-//                "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text" +
-//                        "Sample name long text long text long text long textlong text long text long text"
-//            )
-//
-//            .buildSingle()
-//    )
+@Composable
+fun PruebaPreview(){
+
 }

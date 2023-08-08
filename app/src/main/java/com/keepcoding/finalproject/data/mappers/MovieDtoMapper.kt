@@ -2,11 +2,9 @@ package com.keepcoding.finalproject.data.mappers
 
 import com.keepcoding.finalproject.data.local.model.IdLocal
 import com.keepcoding.finalproject.data.local.model.MovieLocal
-import com.keepcoding.finalproject.data.remote.dto.IdDto
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
 import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
-
 fun MovieDto.toMovieModel() = MovieModel(
     id = IdModel(id?.id!!),
     title = title ?: "",

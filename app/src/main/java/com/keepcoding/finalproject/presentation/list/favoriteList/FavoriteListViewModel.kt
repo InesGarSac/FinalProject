@@ -17,6 +17,7 @@ class FavoriteListViewModel(
     private val _movieList = MutableLiveData <List<MovieModel>>()
     val movieList: LiveData<List<MovieModel>> get() = _movieList
 
+    private val aux: Boolean = false
     fun updateFavorite(movie: MovieModel) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
