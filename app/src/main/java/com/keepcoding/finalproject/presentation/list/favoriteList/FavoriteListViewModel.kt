@@ -14,16 +14,26 @@ class FavoriteListViewModel(
     private val makeFavoriteListUseCase: MakeFavoriteUseCase
 ): ViewModel() {
 
-    private val _movie = MutableLiveData<MovieModel>()
-    val movie: LiveData<MovieModel> get() = _movie
+    private val _movieList = MutableLiveData <List<MovieModel>>()
+    val movieList: LiveData<List<MovieModel>> get() = _movieList
 
     fun updateFavorite(movie: MovieModel) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
                 makeFavoriteListUseCase.invoke(movie)
             }
-
         }
     }
 
+    fun getFavoritesMoviesList(state: Int) {
+        viewModelScope.launch {
+            try {
+                val result = withContext(Dispatchers.IO) {
+                    makeFavoriteListUseCase.invoke(state)
+                }
+                _movieList.value = result
+            } catch (t: Throwable) {/* TODO */}
+        }
+    }
 }
+

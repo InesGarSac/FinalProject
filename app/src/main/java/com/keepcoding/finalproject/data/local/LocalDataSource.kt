@@ -7,5 +7,5 @@ interface LocalDataSource {
     suspend fun getMovieLocalList() : List<MovieLocal>
     suspend fun getMovieById(id:String): MovieLocal
     suspend fun updateFavorite(movie: MovieLocal)
-    suspend fun getFavoriteMovieList(): List<MovieLocal>
+    suspend fun getFavoriteMovieList(favorite: Int): List<MovieLocal>
 }

@@ -8,5 +8,7 @@ class MakeFavoriteUseCase(
     private val movieRepository: MovieRepository
     ) {
     suspend fun invoke(movie: MovieModel)  = movieRepository.updateFavorite(movie)
+    suspend fun invoke(favorite: Int) = movieRepository.getFavoriteMovieList(favorite)
+
 
 }

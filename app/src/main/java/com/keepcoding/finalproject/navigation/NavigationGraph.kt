@@ -41,7 +41,7 @@ fun NavigationGraph() {
         ) {
             addMovieListScreen(navController)
             addMovieDetailScreen()
-            addFavoriteListScreen()
+            addFavoriteListScreen(navController)
         }
     }
 }

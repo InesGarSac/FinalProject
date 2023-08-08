@@ -28,4 +28,6 @@ interface MovieDao {
     @Update
     suspend fun updateFavorite(movie: MovieLocal)
 
+    @Query("SELECT * FROM MovieTable WHERE favorite=:favorite")
+    suspend fun getAllFavoriteMovies(favorite: Int): List<MovieLocal>
 }

@@ -27,10 +27,13 @@ fun NavGraphBuilder.addMovieDetailScreen() {
     }
 }
 
-fun NavGraphBuilder.addFavoriteListScreen(){
+fun NavGraphBuilder.addFavoriteListScreen(navController: NavHostController){
     composable(
         Screen.FavoriteListScreen.route
     ){
-        FavoriteListScreen()
+        FavoriteListScreen{
+                movieId ->
+            navController.navigate("${Screen.MovieDetailScreen.route}/$movieId")
+        }
     }
 }
