@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.presentation.list.moviesList
 
+import com.keepcoding.finalproject.components.RatingComponent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -40,6 +41,7 @@ import com.keepcoding.finalproject.presentation.detail.convertACROtoString
 import com.keepcoding.finalproject.presentation.detail.extractYearFromDate
 import com.keepcoding.finalproject.presentation.list.favoriteList.FavoriteListViewModel
 import org.koin.androidx.compose.koinViewModel
+import kotlin.math.roundToInt
 
 const val POSTER_BASE_URL = "https://wsrv.nl/?url=https://simkl.in"
 
@@ -98,7 +100,7 @@ fun ShowMovieItem(
                     ) {
                         Text(
                             modifier= Modifier.semantics {
-                                this.contentDescription = "This is the ${movie.title} film"
+                                this.contentDescription = "${movie.title}"
                             },
                             text = movie.title,
                             fontSize = 12.sp,
@@ -125,7 +127,7 @@ fun ShowMovieItem(
                         extractYearFromDate(movie.releaseDate)?.let {
                             androidx.compose.material.Text(
                                 modifier= Modifier.semantics {
-                                    this.contentDescription = "${movie.releaseDate}"
+                                    this.contentDescription = "${it}"
                                 },
                                 text = it,
                                 fontSize = 12.sp,
@@ -151,13 +153,25 @@ fun ShowMovieItem(
                         //Movie language
                         Text(
                             modifier= Modifier.semantics {
-                                this.contentDescription = "${movie.title} film is in ${movie.language}"
+                                this.contentDescription = "${movie.language}"
                             },
                             text = convertACROtoString(movie.language),
                             fontSize = 12.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
                         )
+                    }
+
+                    Row(
+                        modifier = Modifier
+                            .padding(2.dp),
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        //Movie rate
+                        Column {
+                            RatingComponent(rating = mapValue(movie.rating.rateVote.rate))
+                        }
+
                     }
 
                 }
@@ -203,6 +217,14 @@ fun ShowMovieItem(
     }
 }
 
+fun mapValue(value: Double): Double {
+    var fromRange = 1..10
+    var toRange = 1..5
+    val fromSize = fromRange.last - fromRange.first
+    val toSize = toRange.last - toRange.first
+    val scaledValue = (value - fromRange.first) * toSize / fromSize
+    return scaledValue + toRange.first
+}
 
 @Preview
 @Composable

@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.presentation.list.moviesList
 
+import android.app.appsearch.AppSearchBatchResult
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -28,17 +29,14 @@ fun MovieListScreen(
     // Get data from ViewModel
 
     if (movieList == null) CircularIndeterminateProgressBar(isDisplayed = true)
-    
+
     LazyColumn(
         modifier= Modifier.padding(
             top = 8.dp,
             start = 8.dp,
             end = 8.dp,
             bottom = 57.dp
-        )
-            .semantics {
-                       this.contentDescription = "You are in a list of films"
-            },
+        ),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp)
 

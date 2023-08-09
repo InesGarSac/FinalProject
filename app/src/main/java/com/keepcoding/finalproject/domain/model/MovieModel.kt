@@ -8,5 +8,6 @@ data class MovieModel(
     val photoUrl: String,
     val overview: String,
     val genres: List<String>?,
-    var favorite: Int
+    var favorite: Int,
+    var rating: RatingModel
 )

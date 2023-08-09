@@ -2,6 +2,8 @@ package com.keepcoding.finalproject
 
 import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
+import com.keepcoding.finalproject.domain.model.RateModel
+import com.keepcoding.finalproject.domain.model.RatingModel
 
 
 class MovieTestDataBuilder {
@@ -14,6 +16,7 @@ class MovieTestDataBuilder {
     var genres = listOf("drama", "comedia", "terror")
     var favorite = 1
     var numElements: Int = 1
+    var rating = RatingModel(RateModel(5.6))
 
     fun withId(id: IdModel): MovieTestDataBuilder {
         this.id = id
@@ -69,7 +72,8 @@ class MovieTestDataBuilder {
                     photoUrl = photoUrl,
                     overview = overview,
                     genres = listOf("drama", "comedia", "terror"),
-                    favorite = 1
+                    favorite = 1,
+                    rating = RatingModel(RateModel(rating.rateVote.rate))
                 )
             )
         }
@@ -85,7 +89,8 @@ class MovieTestDataBuilder {
         photoUrl = photoUrl,
         overview = overview,
         genres = listOf("drama", "comedia", "terror"),
-        favorite = 1
+        favorite = 1,
+        rating = RatingModel(RateModel(rating.rateVote.rate))
     )
 }
 

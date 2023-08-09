@@ -22,7 +22,8 @@ data class MovieLocal(
     @ColumnInfo(name = "overview") val description: String?,
     @ColumnInfo(name = "poster") val photo: String?,
     @ColumnInfo(name = "genre_ids") val genres: List<String>?,
-    @ColumnInfo(name = "favorite") val favorite: Int?
+    @ColumnInfo(name = "favorite") val favorite: Int?,
+    @Embedded val rating: RatingLocal
 )
 
 
