@@ -7,7 +7,11 @@ sealed class Screen(
     val arguments: List<NamedNavArgument>
 ) {
 
-    object MovieListScreen : Screen(
+    object LoginScreen: Screen(
+        route = "login",
+        arguments = emptyList()
+    )
+    object MovieListScreen: Screen(
         route = "movieList",
         arguments = emptyList()
     )

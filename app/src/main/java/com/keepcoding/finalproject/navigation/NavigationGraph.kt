@@ -51,14 +51,14 @@ fun NavigationGraph() {
             if(showBottomBar){
                 BottomNavigation(navController = navController)
             }
-
         }
     ) {
         NavHost(
             // FragmentContainerView
             navController = navController,
-            startDestination = Screen.MovieListScreen.route, // Igual que el startDestination
+            startDestination = Screen.LoginScreen.route, // Igual que el startDestination
         ) {
+            addLoginScreen(navController)
             addMovieListScreen(navController)
             addMovieDetailScreen(navController)
             addFavoriteListScreen(navController)

@@ -1,13 +1,10 @@
 package com.keepcoding.finalproject.domain.model
 
-import com.keepcoding.finalproject.data.remote.dto.IdDto
-
 data class MovieModel(
     val id: IdModel,
     val title: String,
-    val country: String,
+    val language: String,
     val releaseDate: String,
-//    val rank: Int,
     val photoUrl: String,
     val overview: String,
     val genres: List<String>?,

@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.booleanResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.keepcoding.finalproject.components.CircularIndeterminateProgressBar
@@ -41,13 +42,19 @@ fun MovieListScreen(
         items(movieList?.size ?: 0) { i ->
             val item = movieList?.get(i)
             item?.let { movie ->
-                ShowMovieItem(movie, starVisibility = true) {
+                ShowMovieItem(movie, starVisibility = true, stateOfStar = convertBooleanToInt(movie.favorite)) {
                     onItemClick.invoke(movie.id.id)
                 }
             }
 
         }
     }
+}
+
+fun convertBooleanToInt(intFav: Int): Boolean{
+    var boolFav = false
+    if(intFav == 1) boolFav = true
+    return boolFav
 }
 
 @Preview

@@ -46,13 +46,14 @@ fun ShowMovieItem(
     movie: MovieModel,
     favoriteListViewModel: FavoriteListViewModel = koinViewModel(),
     starVisibility: Boolean = false,
+    stateOfStar: Boolean = false,
     onClick: (() -> Unit)? = null
 ) {
     var state by remember {
         mutableStateOf(false)
     }
     var starred by rememberSaveable() {
-        mutableStateOf(false)
+        mutableStateOf(stateOfStar)
     }
 
 
@@ -140,7 +141,7 @@ fun ShowMovieItem(
                         )
                         //Movie language
                         Text(
-                            text = convertACROtoString(movie.country),
+                            text = convertACROtoString(movie.language),
                             fontSize = 12.sp,
                             maxLines = 1,
                             overflow = TextOverflow.Ellipsis
@@ -184,6 +185,7 @@ fun ShowMovieItem(
         }
     }
 }
+
 
 @Preview
 @Composable

@@ -14,7 +14,6 @@ class MovieListViewModel(
     private val getMovieListUseCase: GetMovieListUseCase
 ) : ViewModel() {
 
-
     private val _movieList = MutableLiveData<List<MovieModel>>()
     val movieList: LiveData<List<MovieModel>> get() = _movieList
 

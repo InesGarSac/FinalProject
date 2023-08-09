@@ -2,6 +2,7 @@ package com.keepcoding.finalproject.di
 
 import android.content.Context
 import androidx.room.Room
+import com.keepcoding.finalproject.constants.URL
 import com.keepcoding.finalproject.data.MovieRepository
 import com.keepcoding.finalproject.data.MovieRepositoryImpl
 import com.keepcoding.finalproject.data.local.LocalDataSource
@@ -30,7 +31,7 @@ val dataModule = module {
 
     single<Retrofit> {
         Retrofit.Builder()
-            .baseUrl("https://api.simkl.com/movies/")
+            .baseUrl(URL)
             .client(get())
             .addConverterFactory(MoshiConverterFactory.create(get()))
             .build()
