@@ -16,6 +16,8 @@ class MovieListViewModel(
 
     private val _movieList = MutableLiveData<List<MovieModel>>()
     val movieList: LiveData<List<MovieModel>> get() = _movieList
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> get() = _errorMessage
 
     init {
         getData()
@@ -28,7 +30,9 @@ class MovieListViewModel(
                     getMovieListUseCase.invoke()
                 }
                 _movieList.value = result
-            } catch (t: Throwable) {/* TODO */}
+            } catch (t: Throwable) {
+                _errorMessage.value = "Error"
+            }
         }
     }
 }

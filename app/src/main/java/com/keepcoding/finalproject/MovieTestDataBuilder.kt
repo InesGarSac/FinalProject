@@ -36,6 +36,10 @@ class MovieTestDataBuilder {
         this.photoUrl = photoUrl
         return this
     }
+    fun withFavorite(favorite: Int): MovieTestDataBuilder {
+        this.favorite = favorite
+        return this
+    }
 
     fun withOverview(overview: String): MovieTestDataBuilder {
         this.overview = overview
@@ -55,7 +59,7 @@ class MovieTestDataBuilder {
     fun buildList(): List<MovieModel> {
         val list = mutableListOf<MovieModel>()
 
-        for (i in 0..numElements) {
+        for(i in 0 until numElements) {
             list.add(
                 MovieModel(
                     id = IdModel(546),

@@ -23,6 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
@@ -81,25 +83,29 @@ fun ShowMovieItem(
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(POSTER_BASE_URL +"/posters/" + movie.photoUrl+ "_m.jpg")
-                    .build(), contentDescription = ""
+                    .build(), contentDescription = "${movie.title} poster"
             )
             Row(modifier = Modifier.weight(8f)) {
-
-                Column(
-
-                ) {
+                Column {
                     //Movie title
                     Box(
                         modifier = Modifier
-                            .padding(4.dp),
+                            .padding(4.dp)
+                            .semantics {
+                                this.contentDescription = "This is the ${movie.title} film"
+                            },
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
+                            modifier= Modifier.semantics {
+                                this.contentDescription = "This is the ${movie.title} film"
+                            },
                             text = movie.title,
                             fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             maxLines = 2,
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis,
+
                         )
                     }
 
@@ -118,6 +124,9 @@ fun ShowMovieItem(
 
                         extractYearFromDate(movie.releaseDate)?.let {
                             androidx.compose.material.Text(
+                                modifier= Modifier.semantics {
+                                    this.contentDescription = "${movie.releaseDate}"
+                                },
                                 text = it,
                                 fontSize = 12.sp,
                                 maxLines = 1,
@@ -137,10 +146,13 @@ fun ShowMovieItem(
                         Image(
                             modifier = Modifier.size(16.dp, 16.dp),
                             painter = painterResource(id = R.drawable.language_image),
-                            contentDescription = stringResource(R.string.release_date_description)
+                            contentDescription = stringResource(R.string.language)
                         )
                         //Movie language
                         Text(
+                            modifier= Modifier.semantics {
+                                this.contentDescription = "${movie.title} film is in ${movie.language}"
+                            },
                             text = convertACROtoString(movie.language),
                             fontSize = 12.sp,
                             maxLines = 1,
@@ -158,7 +170,8 @@ fun ShowMovieItem(
                 ) {
                     // Star
                     AndroidView(
-                        modifier = Modifier.clickable {
+                        modifier = Modifier
+                            .clickable {
                             val newState = !starred
                             starred = newState
                             if (starred) {
@@ -168,6 +181,10 @@ fun ShowMovieItem(
                                 movie.favorite = 0
                                 favoriteListViewModel.updateFavorite(movie)
                             }
+                        }
+                            .semantics {
+                               this.contentDescription = "${movie.title} saved as favorite"
+
                         },
                         factory = { context ->
                             StarComponent(context).apply {

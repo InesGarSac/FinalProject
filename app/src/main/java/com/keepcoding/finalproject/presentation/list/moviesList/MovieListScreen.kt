@@ -8,6 +8,8 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.booleanResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.keepcoding.finalproject.components.CircularIndeterminateProgressBar
@@ -33,7 +35,10 @@ fun MovieListScreen(
             start = 8.dp,
             end = 8.dp,
             bottom = 57.dp
-        ),
+        )
+            .semantics {
+                       this.contentDescription = "You are in a list of films"
+            },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.spacedBy(6.dp)
 

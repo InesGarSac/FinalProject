@@ -6,9 +6,12 @@ import com.keepcoding.finalproject.testutil.DefaultDispatcherRule
 import com.keepcoding.finalproject.data.local.LocalDataSource
 import com.keepcoding.finalproject.data.local.model.IdLocal
 import com.keepcoding.finalproject.data.local.model.MovieLocal
+import com.keepcoding.finalproject.data.mappers.toMovieLocal
+import com.keepcoding.finalproject.data.mappers.toMovieModel
 import com.keepcoding.finalproject.data.remote.RemoteDataSource
 import com.keepcoding.finalproject.data.remote.dto.IdDto
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
+import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
@@ -88,6 +91,7 @@ class MovieRepositoryImplTest{
 
 
 
+
     fun getMovieLocal() = listOf(
         MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
             "2022", "Set more than a decade after the events of the first film",
@@ -127,7 +131,5 @@ class MovieRepositoryImplTest{
             listOf("Action", "Adventure", "Science Fiction"),0)
 
         )
-
-
 
 }

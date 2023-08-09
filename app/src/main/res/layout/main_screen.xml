@@ -11,7 +11,7 @@
         android:id="@+id/ivLogo"
         android:layout_width="350dp"
         android:layout_height="360dp"
-        android:contentDescription="descripcion de la imagen"
+        android:contentDescription="MovieShow Application"
         android:src="@drawable/ic_launcher_background"
         android:layout_marginTop="50dp"
         app:layout_constraintBottom_toTopOf="@+id/btnLogin"

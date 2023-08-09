@@ -10,6 +10,5 @@ import com.keepcoding.finalproject.data.local.model.MovieLocal
 @Database(entities = [MovieLocal::class, IdLocal::class], version = 5, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class MovieDatabase : RoomDatabase() {
-    // List of Dao
     abstract fun movieDao(): MovieDao
 }
