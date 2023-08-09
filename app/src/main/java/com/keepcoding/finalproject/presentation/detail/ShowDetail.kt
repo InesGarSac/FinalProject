@@ -31,7 +31,6 @@ import com.keepcoding.finalproject.presentation.list.moviesList.POSTER_BASE_URL
 import java.text.SimpleDateFormat
 
 
-@OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun ShowDetail(
     movie: MovieModel
@@ -41,6 +40,7 @@ fun ShowDetail(
         modifier = Modifier
             .fillMaxSize()
             .verticalScroll(rememberScrollState())
+            .padding(15.dp)
     ) {
         Row(
             modifier = Modifier
@@ -60,9 +60,9 @@ fun ShowDetail(
         }
 
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(12.dp),
             text = movie.title,
-            fontSize = 25.sp,
+            fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis)
@@ -122,7 +122,6 @@ fun ShowDetail(
             text = movie.overview
             ,
             fontSize = 14.sp,
-            maxLines = 8,
             overflow = TextOverflow.Ellipsis)
 
     }

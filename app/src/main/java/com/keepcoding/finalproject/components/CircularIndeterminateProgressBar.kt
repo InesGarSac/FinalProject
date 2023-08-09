@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.keepcoding.finalproject.ui.theme.PrimaryColor
 
 @Composable
 fun CircularIndeterminateProgressBar(isDisplayed: Boolean) {
@@ -28,7 +29,7 @@ fun CircularIndeterminateProgressBar(isDisplayed: Boolean) {
             modifier = Modifier.fillMaxSize()
         ) {
             CircularProgressIndicator(
-                color = MaterialTheme.colors.secondary
+                color = PrimaryColor
             )
         }
 

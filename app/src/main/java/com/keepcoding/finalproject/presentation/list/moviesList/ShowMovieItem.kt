@@ -95,7 +95,7 @@ fun ShowMovieItem(
                     ) {
                         Text(
                             text = movie.title,
-                            fontSize = 16.sp,
+                            fontSize = 12.sp,
                             fontWeight = FontWeight.Bold,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis
