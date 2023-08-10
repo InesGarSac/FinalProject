@@ -10,7 +10,7 @@ fun convertBooleanToInt(intFav: Int): Boolean{
 
 fun mapValue(value: Double): Double {
     val fromRange = 1..10
-    val toRange = 1..5
+    val toRange = 1..6
     val fromSize = fromRange.last - fromRange.first
     val toSize = toRange.last - toRange.first
     val scaledValue = (value - fromRange.first) * toSize / fromSize

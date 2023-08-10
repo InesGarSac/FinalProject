@@ -1,6 +1,5 @@
 package com.keepcoding.finalproject.components
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
@@ -11,15 +10,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.keepcoding.finalproject.R
-import com.keepcoding.finalproject.ui.theme.PrimaryColor
 
 
 @Composable
 fun RatingComponent(
     modifier: Modifier = Modifier,
     rating: Double = 0.0,
-    stars: Int = 5,
-    starsColor: Color = PrimaryColor,
+    stars: Int = 6,
+    starsColor: Color = MaterialTheme.colors.primary,
 ) {
     val filledStars = kotlin.math.floor(rating).toInt()
     val unfilledStars = (stars - kotlin.math.ceil(rating)).toInt()
@@ -29,6 +27,7 @@ fun RatingComponent(
             Icon(imageVector = Icons.Outlined.Star, contentDescription = null, tint = starsColor)
         }
         if (halfStar) {
+
             Icon(
                 painter = painterResource(id = R.drawable.star_half),
                 contentDescription = null,

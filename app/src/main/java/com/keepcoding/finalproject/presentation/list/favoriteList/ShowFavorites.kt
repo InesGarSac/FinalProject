@@ -23,6 +23,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -118,14 +119,18 @@ fun ShowFavoriteScreen(
                         Image(
                             modifier = Modifier.size(16.dp, 16.dp),
                             painter = painterResource(id = R.drawable.release_date_image),
-                            contentDescription = stringResource(R.string.release_date_description)
+                            contentDescription = stringResource(R.string.release_date_description),
+                            colorFilter = ColorFilter.tint(MaterialTheme.colors.primaryVariant)
                         )
 
                         extractYearFromDate(movie.releaseDate)?.let {
                             Text(
                                 modifier= Modifier.semantics {
                                     this.contentDescription = it
-                                },
+                                }
+                                    .padding(
+                                        start = 5.dp
+                                    ),
                                 text = it,
                                 fontSize = descriptionSize,
                                 maxLines = 1,
@@ -147,13 +152,17 @@ fun ShowFavoriteScreen(
                             modifier = Modifier.size(16.dp, 16.dp),
                             painter = painterResource(id = R.drawable.language_image),
                             contentDescription = stringResource(R.string.language),
+                            colorFilter = ColorFilter.tint(MaterialTheme.colors.primaryVariant),
 
                         )
                         //Movie language
                         Text(
                             modifier= Modifier.semantics {
                                 this.contentDescription = movie.language
-                            },
+                            }
+                                .padding(
+                                    start = 5.dp
+                                ),
                             text = convertACROtoString(movie.language),
                             fontSize = descriptionSize,
                             maxLines = 1,

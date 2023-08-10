@@ -23,6 +23,7 @@ private val DarkColorScheme = darkColors(
     secondary = ThemeColors.Night.secondary,
     onPrimary = ThemeColors.Night.text,
     surface = ThemeColors.Night.surface,
+    primaryVariant = ThemeColors.Night.primaryVariant,
     background = ThemeColors.Night.background
 )
 
@@ -31,17 +32,9 @@ private val LightColorScheme = lightColors(
     secondary = ThemeColors.Day.secondary,
     onPrimary = ThemeColors.Day.text,
     surface = ThemeColors.Day.surface,
+    primaryVariant = ThemeColors.Day.primaryVariant,
     background = ThemeColors.Day.background
 
-    /* Other default colors to override
-    background = Color(0xFFFFFBFE),
-    surface = Color(0xFFFFFBFE),
-    onPrimary = Color.White,
-    onSecondary = Color.White,
-    onTertiary = Color.White,
-    onBackground = Color(0xFF1C1B1F),
-    onSurface = Color(0xFF1C1B1F),
-    */
 )
 
 @Composable
