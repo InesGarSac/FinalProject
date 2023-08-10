@@ -17,7 +17,6 @@ class MovieDetailViewModel(
     private val _movie = MutableLiveData<MovieModel>()
     val movie: LiveData<MovieModel> get() = _movie
     private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> get() = _errorMessage
 
     fun getMovie(id: String) = viewModelScope.launch {
         try {

@@ -12,7 +12,7 @@ import org.junit.Test
 class MovieDtoMapperTest {
 
     @Test
-    fun `WHEN to MovieModel with values EXPECT model has value`(){
+    fun `WHEN toMovieModel with values EXPECT model has value`(){
         val movieDto = MovieDto(
             id = IdDto(546),
             title = "test-title",

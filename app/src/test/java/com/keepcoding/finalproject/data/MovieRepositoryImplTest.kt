@@ -18,6 +18,9 @@ import com.keepcoding.finalproject.data.remote.dto.RateDto
 import com.keepcoding.finalproject.data.remote.dto.RatingDto
 import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
+import com.keepcoding.finalproject.testutil.getListMovieLocal
+import com.keepcoding.finalproject.testutil.getListRemote
+import com.keepcoding.finalproject.testutil.movieLocal
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -47,7 +50,7 @@ class MovieRepositoryImplTest{
 
     @Test
     fun `WHEN getMovieList EXPECT local data`() = runTest {
-        coEvery { localDataSource.getMovieLocalList() } returns getMovieLocal()
+        coEvery { localDataSource.getMovieLocalList() } returns getListMovieLocal()
         coEvery { remoteDataSource.getMovieList() } returns listOf<MovieDto>()
 
         val repo = MovieRepositoryImpl(
@@ -81,7 +84,7 @@ class MovieRepositoryImplTest{
 
     @Test
     fun `WHEN getFavoriteMovieList EXPECT local data`() = runTest {
-        coEvery { localDataSource.getFavoriteMovieList(1) } returns getFavoriteListLocal()
+        coEvery { localDataSource.getFavoriteMovieList(1) } returns getListMovieLocal()
 
         val repo = MovieRepositoryImpl(
             localDataSource = localDataSource,
@@ -96,7 +99,7 @@ class MovieRepositoryImplTest{
 
     @Test
     fun `WHEN getMovieById EXPECT local data`() = runTest {
-        coEvery { localDataSource.getMovieById("162400") } returns movieLocalTest
+        coEvery { localDataSource.getMovieById("162400") } returns movieLocal
 
         val repo = MovieRepositoryImpl(
             localDataSource = localDataSource,
@@ -108,58 +111,12 @@ class MovieRepositoryImplTest{
         MatcherAssert.assertThat(res.id, CoreMatchers.`is`(IdModel(162400)))
     }
 
+    @Test
+    fun `WHEN insertFav EXPECT no Exception `() = runTest{
+        coEvery { localDataSource.insertMovieList(getListMovieLocal())} returns Unit
 
-    fun getMovieLocal() = listOf(
-        MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-        "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1, RatingLocal(RateLocal(2.3))
-        ),
-
-        MovieLocal(IdLocal(430306), "Avengers: Endgame", "English",
-            "2019", "After the devastating events of Avengers: Infinity War",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"),0, RatingLocal(RateLocal(2.3)))
-
-    )
-
-    fun getListRemote() = listOf<MovieDto>(
-        MovieDto(
-            IdDto(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"), RatingDto(RateDto(2.3))
-        ),
-
-        MovieDto(
-            IdDto(430306), "Avengers: Endgame", "English",
-            "2019", "After the devastating events of Avengers: Infinity War",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"),RatingDto(RateDto(2.3))
-        )
-    )
-
-    fun getFavoriteListLocal() = listOf(
-        MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1,
-            RatingLocal(RateLocal(2.3))),
-
-        MovieLocal(IdLocal(430306), "Avengers: Endgame", "English",
-            "2019", "After the devastating events of Avengers: Infinity War",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"),0, RatingLocal(RateLocal(2.3))
-
-        )
-    )
-
-    private var movieLocalTest =
-        MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1,
-            RatingLocal(RateLocal(2.3)))
-
+        val repo = MovieRepositoryImpl(remoteDataSource, localDataSource)
+        repo.updateFavorite(MovieTestDataBuilder().buildSingle())
+    }
 
 }

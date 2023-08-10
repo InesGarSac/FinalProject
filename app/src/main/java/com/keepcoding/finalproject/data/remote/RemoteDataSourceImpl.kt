@@ -1,6 +1,5 @@
 package com.keepcoding.finalproject.data.remote
 
-import android.util.Log
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
 
 class RemoteDataSourceImpl(

@@ -1,8 +1,7 @@
 package com.keepcoding.finalproject.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import androidx.compose.runtime.rememberUpdatedState
-import com.keepcoding.finalproject.constants.URL
+import com.keepcoding.finalproject.utils.constants.URL
 import com.keepcoding.finalproject.testutil.DefaultDispatcherRule
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory

@@ -11,6 +11,7 @@ import com.keepcoding.finalproject.domain.usecase.GetFavoriteListUseCase
 import com.keepcoding.finalproject.domain.usecase.MakeFavoriteUseCase
 import com.keepcoding.finalproject.testutil.DefaultDispatcherRule
 import com.keepcoding.finalproject.testutil.getOrAwaitValue
+import com.keepcoding.finalproject.testutil.movieModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -71,21 +72,16 @@ class FavoriteListViewModelTest{
 
     @Test
     fun `WHEN viewModel init EXPECT null data`() = runTest {
-        coEvery { makeFavoriteUseCase.invoke(movieModelTest) } returns Unit
+        coEvery { makeFavoriteUseCase.invoke(movieModel) } returns Unit
 
         val viewModel = FavoriteListViewModel(makeFavoriteUseCase)
-        viewModel.updateFavorite(movieModelTest)
+        viewModel.updateFavorite(movieModel)
 
         val movieList = viewModel.movieList.value
 
         MatcherAssert.assertThat(movieList, CoreMatchers.nullValue())
     }
 
-    private var movieModelTest = MovieModel(
-        IdModel(256), "prueba", "english",
-        "2023", "https//:photo.com", "description", listOf
-            ("drama", "comedia"), 1, RatingModel(RateModel(2.3))
-    )
 
 
     }

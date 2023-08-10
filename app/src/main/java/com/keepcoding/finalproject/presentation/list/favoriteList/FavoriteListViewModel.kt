@@ -17,12 +17,15 @@ class FavoriteListViewModel(
     private val _movieList = MutableLiveData <List<MovieModel>>()
     val movieList: LiveData<List<MovieModel>> get() = _movieList
     private val _errorMessage = MutableLiveData<String?>()
-    val errorMessage: LiveData<String?> get() = _errorMessage
 
     fun updateFavorite(movie: MovieModel) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
-                makeFavoriteListUseCase.invoke(movie)
+            try {
+                withContext(Dispatchers.IO) {
+                    makeFavoriteListUseCase.invoke(movie)
+                }
+            } catch (t: Throwable) {
+                _errorMessage.value = "Error"
             }
         }
     }

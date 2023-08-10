@@ -2,7 +2,7 @@ package com.keepcoding.finalproject.di
 
 import android.content.Context
 import androidx.room.Room
-import com.keepcoding.finalproject.constants.URL
+import com.keepcoding.finalproject.utils.constants.URL
 import com.keepcoding.finalproject.data.MovieRepository
 import com.keepcoding.finalproject.data.MovieRepositoryImpl
 import com.keepcoding.finalproject.data.local.LocalDataSource

@@ -5,4 +5,8 @@
     <string name="language">Language</string>
     <string name="movie_rate">Movie Rate</string>
     <string name="release_date_description">Release date</string>
+    <string name="loading">loading</string>
+    <string name="noInternet">No internet connection</string>
+    <string name="detail">Detail</string>
+    <string name="filmList">FilmList</string>
 </resources>

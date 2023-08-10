@@ -1,7 +1,6 @@
 package com.keepcoding.finalproject.domain.usecase
 
 import com.keepcoding.finalproject.data.MovieRepository
-import com.keepcoding.finalproject.data.mappers.toMovieLocal
 import com.keepcoding.finalproject.domain.model.MovieModel
 
 class MakeFavoriteUseCase(

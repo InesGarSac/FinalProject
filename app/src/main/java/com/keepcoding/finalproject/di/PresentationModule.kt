@@ -1,6 +1,5 @@
 package com.keepcoding.finalproject.di
 
-import com.keepcoding.finalproject.domain.usecase.MakeFavoriteUseCase
 import com.keepcoding.finalproject.presentation.detail.MovieDetailViewModel
 import com.keepcoding.finalproject.presentation.list.favoriteList.FavoriteListViewModel
 import com.keepcoding.finalproject.presentation.list.moviesList.MovieListViewModel

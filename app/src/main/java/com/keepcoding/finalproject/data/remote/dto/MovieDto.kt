@@ -1,6 +1,5 @@
 package com.keepcoding.finalproject.data.remote.dto
 
-import com.keepcoding.finalproject.domain.model.IdModel
 import com.squareup.moshi.Json
 
 data class MovieDto(

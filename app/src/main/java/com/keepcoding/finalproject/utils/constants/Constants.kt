@@ -1,4 +1,4 @@
-package com.keepcoding.finalproject.constants
+package com.keepcoding.finalproject.utils.constants
 
 const val URL = "https://api.simkl.com/movies/"
 const val POSTER_BASE_URL = "https://wsrv.nl/?url=https://simkl.in"

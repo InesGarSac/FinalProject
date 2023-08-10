@@ -12,6 +12,8 @@ import com.keepcoding.finalproject.domain.model.MovieModel
 import com.keepcoding.finalproject.domain.model.RateModel
 import com.keepcoding.finalproject.domain.model.RatingModel
 import com.keepcoding.finalproject.testutil.DefaultDispatcherRule
+import com.keepcoding.finalproject.testutil.movieLocal
+import com.keepcoding.finalproject.testutil.movieModel
 import io.mockk.MockKAnnotations
 import io.mockk.coEvery
 import io.mockk.impl.annotations.MockK
@@ -49,19 +51,5 @@ class GetFavoriteListUseCaseTest {
     }
 
 
-    var movieModel =
-        MovieModel(
-            IdModel(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1, RatingModel(RateModel(2.3))
-        )
 
-    var movieLocal =
-        MovieLocal (
-            IdLocal(162400), "Avatar: The Way of Water", "English",
-            "2022", "Set more than a decade after the events of the first film",
-            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1, RatingLocal (RateLocal (2.3))
-        )
 }

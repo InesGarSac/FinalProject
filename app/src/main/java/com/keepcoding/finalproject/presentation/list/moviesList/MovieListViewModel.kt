@@ -23,7 +23,7 @@ class MovieListViewModel(
         getData()
     }
 
-    fun getData() {
+    private fun getData() {
         viewModelScope.launch {
             try {
                 val result = withContext(Dispatchers.IO) {

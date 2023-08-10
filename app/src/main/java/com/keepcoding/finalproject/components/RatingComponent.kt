@@ -10,8 +10,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.keepcoding.finalproject.R
 import com.keepcoding.finalproject.ui.theme.PrimaryColor
-import java.lang.Math.ceil
-import java.lang.Math.floor
 
 
 @Composable
@@ -21,8 +19,8 @@ fun RatingComponent(
     stars: Int = 5,
     starsColor: Color = PrimaryColor,
 ) {
-    val filledStars = floor(rating).toInt()
-    val unfilledStars = (stars - ceil(rating)).toInt()
+    val filledStars = kotlin.math.floor(rating).toInt()
+    val unfilledStars = (stars - kotlin.math.ceil(rating)).toInt()
     val halfStar = !(rating.rem(1).equals(0.0))
     Row(modifier = modifier) {
         repeat(filledStars) {

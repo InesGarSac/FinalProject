@@ -1,4 +1,4 @@
-package com.keepcoding.finalproject.converters
+package com.keepcoding.finalproject.utils.converters
 
 import androidx.room.TypeConverter
 import com.google.gson.Gson
@@ -18,4 +18,5 @@ class Converters {
         val gson = Gson()
         return gson.toJson(list)
     }
+
 }

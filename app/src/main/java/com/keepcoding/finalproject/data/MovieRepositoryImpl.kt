@@ -1,12 +1,10 @@
 package com.keepcoding.finalproject.data
 
-import android.util.Log
 import com.keepcoding.finalproject.data.local.LocalDataSource
 import com.keepcoding.finalproject.data.mappers.toMovieLocal
 import com.keepcoding.finalproject.data.mappers.toMovieModel
 import com.keepcoding.finalproject.data.remote.RemoteDataSource
 import com.keepcoding.finalproject.domain.model.MovieModel
-import com.keepcoding.finalproject.presentation.list.moviesList.POSTER_BASE_URL
 
 class MovieRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,

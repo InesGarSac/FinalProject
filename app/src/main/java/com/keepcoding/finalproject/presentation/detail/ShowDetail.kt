@@ -14,18 +14,24 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keepcoding.finalproject.R
 import com.keepcoding.finalproject.components.RatingComponent
 import com.keepcoding.finalproject.domain.model.MovieModel
-import com.keepcoding.finalproject.presentation.list.moviesList.POSTER_BASE_URL
-import com.keepcoding.finalproject.presentation.list.moviesList.mapValue
-import java.text.SimpleDateFormat
+import com.keepcoding.finalproject.ui.theme.descriptionSize
+import com.keepcoding.finalproject.ui.theme.subtitleSize
+import com.keepcoding.finalproject.ui.theme.titleSize
+import com.keepcoding.finalproject.utils.constants.POSTER_BASE_URL
+import com.keepcoding.finalproject.utils.convertACROtoString
+import com.keepcoding.finalproject.utils.extractYearFromDate
+import com.keepcoding.finalproject.utils.joinToString
+import com.keepcoding.finalproject.utils.mapValue
 
 
 @Composable
@@ -57,9 +63,12 @@ fun ShowDetail(
         }
 
         Text(
-            modifier = Modifier.padding(12.dp),
+            modifier = Modifier.padding(12.dp)
+                .semantics {
+                           contentDescription = movie.title
+                },
             text = movie.title,
-            fontSize = 22.sp,
+            fontSize = titleSize,
             fontWeight = FontWeight.Bold,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis)
@@ -70,14 +79,14 @@ fun ShowDetail(
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = convertACROtoString(movie.language),
-                fontSize = 14.sp,
+                fontSize = descriptionSize,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = "|",
-                fontSize = 14.sp,
+                fontSize = descriptionSize,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -86,14 +95,14 @@ fun ShowDetail(
                 Text(
                     modifier = Modifier.padding(10.dp),
                     text = it,
-                    fontSize = 14.sp,
+                    fontSize = descriptionSize,
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis)
             }
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = "|",
-                fontSize = 14.sp,
+                fontSize = descriptionSize,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
@@ -102,7 +111,7 @@ fun ShowDetail(
         Text(
             modifier = Modifier.padding(10.dp),
             text = "Genres",
-            fontSize = 16.sp,
+            fontSize = subtitleSize,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis)
@@ -111,7 +120,7 @@ fun ShowDetail(
         Text(
             modifier = Modifier.padding(10.dp),
             text = joinToString(movie.genres!!),
-            fontSize = 14.sp,
+            fontSize = descriptionSize,
             maxLines = 2,
             overflow = TextOverflow.Ellipsis
         )
@@ -119,7 +128,7 @@ fun ShowDetail(
         Text(
             modifier = Modifier.padding(10.dp),
             text = "Description",
-            fontSize = 16.sp,
+            fontSize = subtitleSize,
             fontWeight = FontWeight.Bold,
             maxLines = 1,
             overflow = TextOverflow.Ellipsis)
@@ -127,31 +136,10 @@ fun ShowDetail(
             modifier = Modifier.padding(10.dp),
             text = movie.overview
             ,
-            fontSize = 14.sp,
+            fontSize = descriptionSize,
             overflow = TextOverflow.Ellipsis)
 
     }
-}
-
-fun extractYearFromDate(dateAsString: String): String? {
-    val formatFromApi = SimpleDateFormat("dd/MM/yyyy")
-    val myFormat = SimpleDateFormat("yyyy")
-    return formatFromApi.parse(dateAsString)?.let { date ->
-        myFormat.format(date)
-    }
-}
-
-fun convertACROtoString(acro: String): String{
-    return when(acro){
-        "us" -> "English"
-        "es" -> "Spanish"
-        else -> {"N/A"}
-    }
-
-}
-
-fun joinToString(list: List<String>): String{
-    return list.joinToString(", ")
 }
 
 
