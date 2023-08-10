@@ -6,6 +6,6 @@ import com.keepcoding.finalproject.domain.model.MovieModel
 class GetDetailUseCase(
     private val movieRepository: MovieRepository
 ) {
-    suspend fun invoke(id: String) : MovieModel = movieRepository.getMovieById(id)
+    suspend fun invoke(id: String): MovieModel = movieRepository.getMovieById(id)
 
 }

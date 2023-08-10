@@ -9,7 +9,7 @@ fun MainScreenComponent(
     onClick: (() -> Unit)? = null
 ) {
     AndroidViewBinding(factory = MainScreenBinding::inflate){
-        btnLogin.setOnClickListener{
+        btnMain.setOnClickListener{
             if (onClick != null) {
                 onClick()
             }

@@ -21,7 +21,7 @@ sealed class Screen(
     )
 
     object FavoriteListScreen : Screen(
-        route = "FavoriteList",
+        route = "favoriteList",
         arguments = emptyList()
     )
 }

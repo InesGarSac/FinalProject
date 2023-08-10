@@ -2,6 +2,8 @@ package com.keepcoding.finalproject.data.mappers
 
 import com.keepcoding.finalproject.data.remote.dto.IdDto
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
+import com.keepcoding.finalproject.data.remote.dto.RateDto
+import com.keepcoding.finalproject.data.remote.dto.RatingDto
 import com.keepcoding.finalproject.domain.model.IdModel
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -18,7 +20,8 @@ class MovieDtoMapperTest {
             language = "English",
             photo = "https://photo.url",
             genres = listOf("terror"),
-            description = "descripcion-test"
+            description = "descripcion-test",
+            ratings = RatingDto(RateDto(2.3))
         )
         val result = movieDto.toMovieModel()
 

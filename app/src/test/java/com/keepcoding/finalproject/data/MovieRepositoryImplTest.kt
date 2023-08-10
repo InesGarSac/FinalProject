@@ -2,15 +2,20 @@ package com.keepcoding.finalproject.data
 
 import org.junit.Rule
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.keepcoding.finalproject.MovieTestDataBuilder
 import com.keepcoding.finalproject.testutil.DefaultDispatcherRule
 import com.keepcoding.finalproject.data.local.LocalDataSource
 import com.keepcoding.finalproject.data.local.model.IdLocal
 import com.keepcoding.finalproject.data.local.model.MovieLocal
+import com.keepcoding.finalproject.data.local.model.RateLocal
+import com.keepcoding.finalproject.data.local.model.RatingLocal
 import com.keepcoding.finalproject.data.mappers.toMovieLocal
 import com.keepcoding.finalproject.data.mappers.toMovieModel
 import com.keepcoding.finalproject.data.remote.RemoteDataSource
 import com.keepcoding.finalproject.data.remote.dto.IdDto
 import com.keepcoding.finalproject.data.remote.dto.MovieDto
+import com.keepcoding.finalproject.data.remote.dto.RateDto
+import com.keepcoding.finalproject.data.remote.dto.RatingDto
 import com.keepcoding.finalproject.domain.model.IdModel
 import com.keepcoding.finalproject.domain.model.MovieModel
 import io.mockk.MockKAnnotations
@@ -89,19 +94,32 @@ class MovieRepositoryImplTest{
         MatcherAssert.assertThat(res.size, CoreMatchers.`is`(2))
     }
 
+    @Test
+    fun `WHEN getMovieById EXPECT local data`() = runTest {
+        coEvery { localDataSource.getMovieById("162400") } returns movieLocalTest
 
+        val repo = MovieRepositoryImpl(
+            localDataSource = localDataSource,
+            remoteDataSource = remoteDataSource
+        )
+
+        val res = repo.getMovieById("162400")
+
+        MatcherAssert.assertThat(res.id, CoreMatchers.`is`(IdModel(162400)))
+    }
 
 
     fun getMovieLocal() = listOf(
         MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
             "2022", "Set more than a decade after the events of the first film",
         "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1),
+            listOf("Action", "Adventure", "Science Fiction", "War"),1, RatingLocal(RateLocal(2.3))
+        ),
 
         MovieLocal(IdLocal(430306), "Avengers: Endgame", "English",
             "2019", "After the devastating events of Avengers: Infinity War",
             "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"),0)
+            listOf("Action", "Adventure", "Science Fiction"),0, RatingLocal(RateLocal(2.3)))
 
     )
 
@@ -110,26 +128,38 @@ class MovieRepositoryImplTest{
             IdDto(162400), "Avatar: The Way of Water", "English",
             "2022", "Set more than a decade after the events of the first film",
             "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War")),
+            listOf("Action", "Adventure", "Science Fiction", "War"), RatingDto(RateDto(2.3))
+        ),
 
         MovieDto(
             IdDto(430306), "Avengers: Endgame", "English",
             "2019", "After the devastating events of Avengers: Infinity War",
             "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"))
+            listOf("Action", "Adventure", "Science Fiction"),RatingDto(RateDto(2.3))
         )
+    )
 
     fun getFavoriteListLocal() = listOf(
         MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
             "2022", "Set more than a decade after the events of the first film",
             "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction", "War"),1),
+            listOf("Action", "Adventure", "Science Fiction", "War"),1,
+            RatingLocal(RateLocal(2.3))),
 
         MovieLocal(IdLocal(430306), "Avengers: Endgame", "English",
             "2019", "After the devastating events of Avengers: Infinity War",
             "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
-            listOf("Action", "Adventure", "Science Fiction"),0)
+            listOf("Action", "Adventure", "Science Fiction"),0, RatingLocal(RateLocal(2.3))
 
         )
+    )
+
+    private var movieLocalTest =
+        MovieLocal(IdLocal(162400), "Avatar: The Way of Water", "English",
+            "2022", "Set more than a decade after the events of the first film",
+            "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
+            listOf("Action", "Adventure", "Science Fiction", "War"),1,
+            RatingLocal(RateLocal(2.3)))
+
 
 }

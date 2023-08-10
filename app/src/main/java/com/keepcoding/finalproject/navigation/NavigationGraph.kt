@@ -30,7 +30,7 @@ import com.keepcoding.finalproject.ui.theme.White
 
 sealed class BottomNavigationScreens(val route: String, val title: String, val icon: ImageVector) {
     object Home : BottomNavigationScreens("movieList", "Movies", Icons.Filled.List)
-    object TV : BottomNavigationScreens("FavoriteList", "Favorite", Icons.Filled.Favorite)
+    object TV : BottomNavigationScreens("favoriteList", "Favorite", Icons.Filled.Favorite)
 }
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")

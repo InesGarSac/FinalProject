@@ -13,8 +13,8 @@ import com.squareup.moshi.Types
 
 @Entity(tableName = "MovieTable")
 data class MovieLocal(
-    @Embedded val ids: IdLocal,
-    @PrimaryKey @ColumnInfo(name = "title") val title: String,
+    @PrimaryKey @Embedded val ids: IdLocal,
+    @ColumnInfo(name = "title") val title: String,
 //    @ColumnInfo(name = "rate") val rate: String,
     @ColumnInfo(name = "country") val language: String,
     @ColumnInfo(name = "releasedate") val releaseDate: String,

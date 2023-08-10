@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.presentation.detail
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -20,8 +21,10 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.keepcoding.finalproject.R
+import com.keepcoding.finalproject.components.RatingComponent
 import com.keepcoding.finalproject.domain.model.MovieModel
 import com.keepcoding.finalproject.presentation.list.moviesList.POSTER_BASE_URL
+import com.keepcoding.finalproject.presentation.list.moviesList.mapValue
 import java.text.SimpleDateFormat
 
 
@@ -62,7 +65,8 @@ fun ShowDetail(
             overflow = TextOverflow.Ellipsis)
 
         Row(modifier = Modifier
-            .fillMaxWidth()) {
+            .fillMaxWidth(),
+        horizontalArrangement = Arrangement.Center) {
             Text(
                 modifier = Modifier.padding(10.dp),
                 text = convertACROtoString(movie.language),
@@ -86,6 +90,14 @@ fun ShowDetail(
                     maxLines = 3,
                     overflow = TextOverflow.Ellipsis)
             }
+            Text(
+                modifier = Modifier.padding(10.dp),
+                text = "|",
+                fontSize = 14.sp,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+            RatingComponent(modifier = Modifier.padding(top= 7.dp), rating = mapValue(movie.rating.rateVote.rate))
         }
         Text(
             modifier = Modifier.padding(10.dp),
@@ -106,7 +118,7 @@ fun ShowDetail(
 
         Text(
             modifier = Modifier.padding(10.dp),
-            text = "Descripción",
+            text = "Description",
             fontSize = 16.sp,
             fontWeight = FontWeight.Bold,
             maxLines = 1,

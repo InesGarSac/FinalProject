@@ -28,9 +28,9 @@ class StarComponent @JvmOverloads constructor(
 
     private fun selectImage() = imageView.setImageResource(
         if (checked) {
-            R.drawable.favorite_filled
+            R.drawable.favorite_filled_white
         } else {
-            R.drawable.favorite
+            R.drawable.favorite_white
         }
     )
 }

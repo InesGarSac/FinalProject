@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.domain.model
 
+import android.provider.Telephony.Mms.Rate
 import com.keepcoding.finalproject.MovieTestDataBuilder
 import org.hamcrest.CoreMatchers.*
 import org.hamcrest.CoreMatchers
@@ -18,7 +19,8 @@ class MovieModelTest{
          photoUrl = "https://wsrv.nl/?url=https://simkl.in/posters/14/140677817e83851404_w.jpg",
          overview = "Descripción del Diario de Noa",
          genres = listOf("drama", "comedia", "terror"),
-         favorite = 1
+         favorite = 1,
+         RatingModel(RateModel(2.3))
      )
 
      @Test

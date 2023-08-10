@@ -9,7 +9,7 @@ import com.keepcoding.finalproject.data.local.model.MovieLocal
 import com.keepcoding.finalproject.data.local.model.RateLocal
 import com.keepcoding.finalproject.data.local.model.RatingLocal
 
-@Database(entities = [MovieLocal::class, IdLocal::class, RatingLocal::class, RateLocal::class], version = 6, exportSchema = true)
+@Database(entities = [MovieLocal::class, IdLocal::class, RatingLocal::class, RateLocal::class], version = 1, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class MovieDatabase : RoomDatabase() {
     abstract fun movieDao(): MovieDao
