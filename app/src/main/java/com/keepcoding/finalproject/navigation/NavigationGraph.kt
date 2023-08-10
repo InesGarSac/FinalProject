@@ -1,16 +1,19 @@
 package com.keepcoding.finalproject.navigation
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.Icon
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.List
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -31,7 +34,9 @@ sealed class BottomNavigationScreens(val route: String, val title: String, val i
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun NavigationGraph() {
+fun NavigationGraph(
+    darkMode: MutableState<Boolean>
+) {
     val navController = rememberNavController()
 
     val screens = listOf(
@@ -56,7 +61,7 @@ fun NavigationGraph() {
         ) {
             addLoginScreen(navController)
             addMovieListScreen(navController)
-            addMovieDetailScreen(navController)
+            addMovieDetailScreen(navController, darkMode)
             addFavoriteListScreen(navController)
         }
     }
@@ -76,6 +81,7 @@ fun BottomNavigation(navController: NavController) {
         val currentRoute = navBackStackEntry?.destination?.route
         items.forEach { item ->
             BottomNavigationItem(
+                modifier = Modifier.background(MaterialTheme.colors.secondary),
                 icon = { Icon(item.icon, contentDescription = item.title) },
                 label = {
                     Text(

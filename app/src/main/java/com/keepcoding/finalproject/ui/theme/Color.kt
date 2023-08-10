@@ -12,3 +12,30 @@ val Pink40 = Color(0xFF7D5260)
 
 val PrimaryColor = Color(0xFFFC236E)
 val White = Color(0xFFFFFFFF)
+
+sealed class ThemeColors (
+    val background: Color,
+    val secondary: Color,
+    val surface: Color,
+    val primary: Color,
+    val primaryVariant: Color,
+    val text: Color
+){
+    object Night : ThemeColors(
+        background = Color(0xFF858585),
+        secondary = Color(0xFF535353),
+        surface = Color(0xFF535353),
+        primary = Color(0xFFFFFFFF),
+        primaryVariant = Color(0xFFFFFFFF),
+        text = Color(0xFF000000)
+    )
+
+    object Day : ThemeColors (
+        background = Color(0xFFFFFFFF),
+        secondary = Color(0xFFFF0057),
+        surface = Color(0xFFFFFFFF),
+        primary = Color(0xFFFF0057),
+        primaryVariant = Color(0xFF000000),
+        text = Color(0xFF000000)
+    )
+}

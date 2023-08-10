@@ -1,6 +1,7 @@
 package com.keepcoding.finalproject.presentation.list.favoriteList
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -11,7 +12,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material3.CardDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -51,9 +54,12 @@ fun ShowFavoriteScreen(
         mutableStateOf(false)
     }
         Card(
-        modifier = Modifier.padding(2.dp),
+        modifier = Modifier
+            .padding(2.dp),
+            shape = RoundedCornerShape(20.dp),
         elevation = 10.dp,
-        shape = RoundedCornerShape(20.dp)
+            backgroundColor = MaterialTheme.colors.surface
+
     ) {
         Row(
             modifier = Modifier
@@ -70,7 +76,8 @@ fun ShowFavoriteScreen(
                     .clickable {
                         state = !state
                         onClick?.invoke()
-                    }.alpha(0.8f),
+                    }
+                    .alpha(0.8f),
                 placeholder = painterResource(id = R.drawable.movie_image),
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
@@ -97,7 +104,7 @@ fun ShowFavoriteScreen(
                             fontWeight = FontWeight.Bold,
                             maxLines = 2,
                             overflow = TextOverflow.Ellipsis,
-
+                            color = MaterialTheme.colors.onSurface
                         )
                     }
 
@@ -120,9 +127,10 @@ fun ShowFavoriteScreen(
                                     this.contentDescription = it
                                 },
                                 text = it,
-                                fontSize = 12.sp,
+                                fontSize = descriptionSize,
                                 maxLines = 1,
-                                overflow = TextOverflow.Ellipsis
+                                overflow = TextOverflow.Ellipsis,
+                                color = MaterialTheme.colors.onSurface
                             )
                         }
 
@@ -138,7 +146,8 @@ fun ShowFavoriteScreen(
                         Image(
                             modifier = Modifier.size(16.dp, 16.dp),
                             painter = painterResource(id = R.drawable.language_image),
-                            contentDescription = stringResource(R.string.language)
+                            contentDescription = stringResource(R.string.language),
+
                         )
                         //Movie language
                         Text(
@@ -148,7 +157,8 @@ fun ShowFavoriteScreen(
                             text = convertACROtoString(movie.language),
                             fontSize = descriptionSize,
                             maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
+                            overflow = TextOverflow.Ellipsis,
+                            color = MaterialTheme.colors.onSurface
                         )
                     }
 

@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.presentation.detail
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,6 +26,7 @@ import coil.request.ImageRequest
 import com.keepcoding.finalproject.R
 import com.keepcoding.finalproject.components.RatingComponent
 import com.keepcoding.finalproject.domain.model.MovieModel
+import com.keepcoding.finalproject.ui.theme.ThemeColors
 import com.keepcoding.finalproject.ui.theme.descriptionSize
 import com.keepcoding.finalproject.ui.theme.subtitleSize
 import com.keepcoding.finalproject.ui.theme.titleSize
@@ -106,7 +109,10 @@ fun ShowDetail(
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis
             )
-            RatingComponent(modifier = Modifier.padding(top= 7.dp), rating = mapValue(movie.rating.rateVote.rate))
+            RatingComponent(
+                modifier = Modifier
+                    .padding(top= 7.dp),
+                rating = mapValue(movie.rating.rateVote.rate))
         }
         Text(
             modifier = Modifier.padding(10.dp),

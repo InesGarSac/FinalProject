@@ -1,5 +1,6 @@
 package com.keepcoding.finalproject.navigation
 
+import androidx.compose.runtime.MutableState
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
@@ -26,13 +27,13 @@ fun NavGraphBuilder.addMovieListScreen(navController: NavHostController) {
     }
 }
 
-fun NavGraphBuilder.addMovieDetailScreen(navController: NavController) {
+fun NavGraphBuilder.addMovieDetailScreen(navController: NavController, darkMode: MutableState<Boolean>) {
     composable(
         Screen.MovieDetailScreen.route + "/{movieId}",
         arguments = Screen.MovieDetailScreen.arguments) {
         navBackStackEntry ->
         val id = navBackStackEntry.arguments?.getString("movieId") ?: ""
-        MovieDetailScreen(id = id){
+        MovieDetailScreen(id = id, darkMode = darkMode){
             navController.popBackStack()
         }
     }
