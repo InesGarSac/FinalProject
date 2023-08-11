@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -56,9 +57,13 @@ fun ShowFavoriteScreen(
     }
         Card(
         modifier = Modifier
-            .padding(2.dp),
+            .padding(2.dp)
+            .semantics (true) { }
+            .clearAndSetSemantics {
+                contentDescription = movie.title
+            },
             shape = RoundedCornerShape(20.dp),
-        elevation = 10.dp,
+            elevation = 10.dp,
             backgroundColor = MaterialTheme.colors.surface
 
     ) {

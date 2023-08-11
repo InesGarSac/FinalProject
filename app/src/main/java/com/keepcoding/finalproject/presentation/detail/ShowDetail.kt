@@ -17,6 +17,7 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.font.FontWeight
@@ -57,12 +58,16 @@ fun ShowDetail(
 
             AsyncImage(
                 modifier = Modifier
-                    .fillMaxSize(),
+                    .fillMaxSize()
+                    .semantics (true) { }
+                    .clearAndSetSemantics {
+                        contentDescription = movie.title
+                    },
                 placeholder = painterResource(id = R.drawable.movie_image),
                 error = painterResource(id = R.drawable.movie_image),
                 model = ImageRequest.Builder(LocalContext.current)
                     .data(POSTER_BASE_URL +"/posters/" + movie.photoUrl+ "_m.jpg")
-                    .build(), contentDescription = ""
+                    .build(), contentDescription = "Photo ${movie.title}"
             )
         }
 
@@ -81,14 +86,20 @@ fun ShowDetail(
             .fillMaxWidth(),
         horizontalArrangement = Arrangement.Center) {
             Text(
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(10.dp).semantics {
+                    contentDescription = "Film in ${movie.language}"
+                },
                 text = convertACROtoString(movie.language),
                 fontSize = descriptionSize,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis
+                overflow = TextOverflow.Ellipsis,
+
             )
             Text(
-                modifier = Modifier.padding(10.dp),
+                modifier = Modifier.padding(10.dp)
+                    .semantics {
+                        contentDescription = "Spacer"
+                    },
                 text = "|",
                 fontSize = descriptionSize,
                 maxLines = 1,
@@ -97,7 +108,10 @@ fun ShowDetail(
 
             extractYearFromDate(movie.releaseDate)?.let {
                 Text(
-                    modifier = Modifier.padding(10.dp),
+                    modifier = Modifier.padding(10.dp)
+                        .semantics {
+                            contentDescription = it
+                        },
                     text = it,
                     fontSize = descriptionSize,
                     maxLines = 3,
@@ -112,7 +126,10 @@ fun ShowDetail(
             )
             RatingComponent(
                 modifier = Modifier
-                    .padding(top= 7.dp),
+                    .padding(top= 7.dp)
+                    .semantics {
+                        contentDescription = "The film has ${movie.rating.rateVote.rate} "
+                    },
                 rating = mapValue(movie.rating.rateVote.rate))
         }
         Text(
@@ -125,7 +142,10 @@ fun ShowDetail(
 
 
         Text(
-            modifier = Modifier.padding(10.dp),
+            modifier = Modifier.padding(10.dp)
+                .semantics {
+                    contentDescription = "The genres are ${movie.genres} "
+                },
             text = joinToString(movie.genres!!),
             fontSize = descriptionSize,
             maxLines = 2,
@@ -140,9 +160,11 @@ fun ShowDetail(
             maxLines = 1,
             overflow = TextOverflow.Ellipsis)
         Text(
-            modifier = Modifier.padding(10.dp),
-            text = movie.overview
-            ,
+            modifier = Modifier.padding(10.dp)
+                .semantics {
+                    contentDescription = movie.overview
+                },
+            text = movie.overview,
             fontSize = descriptionSize,
             overflow = TextOverflow.Ellipsis)
 

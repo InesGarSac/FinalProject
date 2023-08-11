@@ -35,7 +35,7 @@ fun CircularIndeterminateProgressBar(isDisplayed: Boolean) {
             CircularProgressIndicator(
                 modifier = Modifier
                     .semantics {
-                    contentDescription = R.string.release_date_description.toString()
+                    contentDescription = "En curso"
                 },
                 color = PrimaryColor
             )

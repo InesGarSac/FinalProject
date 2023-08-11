@@ -16,7 +16,7 @@ import com.keepcoding.finalproject.R
 fun RatingComponent(
     modifier: Modifier = Modifier,
     rating: Double = 0.0,
-    stars: Int = 6,
+    stars: Int = 5,
     starsColor: Color = MaterialTheme.colors.primary,
 ) {
     val filledStars = kotlin.math.floor(rating).toInt()
